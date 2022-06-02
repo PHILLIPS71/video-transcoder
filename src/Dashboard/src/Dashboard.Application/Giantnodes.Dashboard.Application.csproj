@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.0.2" />
+		<PackageReference Include="MassTransit" Version="8.0.2" />
+		<PackageReference Include="MassTransit.Analyzers" Version="8.0.2" />
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Infrastructure\src\Giantnodes.Infrastructure\Giantnodes.Infrastructure.csproj" />
+		<ProjectReference Include="..\Dashboard.Abstractions\Giantnodes.Dashboard.Abstractions.csproj" />
+		<ProjectReference Include="..\Dashboard.Persistence\Giantnodes.Dashboard.Persistence.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Consumers\" />
+	</ItemGroup>
+
+</Project>
