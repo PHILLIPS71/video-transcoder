@@ -19,12 +19,7 @@ namespace Giantnodes.Dashboard.Api
         {
             services.AddPersistenceServices(_configuration);
             services.AddApplicationServices(_configuration);
-
-            services
-                .AddGraphQLServer()
-                .AddQueryType()
-                .AddMutationType()
-                .AddMutationConventions();
+            services.AddApiServices(_configuration);
         }
 
         public void Configure(IApplicationBuilder app)

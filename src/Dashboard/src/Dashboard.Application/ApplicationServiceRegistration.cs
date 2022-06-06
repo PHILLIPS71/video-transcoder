@@ -1,6 +1,6 @@
 ﻿using FluentValidation.AspNetCore;
-using Giantnodes.Application.Validation;
-using Giantnodes.Dashboard.Persistence;
+using Giantnodes.Dashboard.Abstractions.Features.FileExplorer;
+using Giantnodes.Dashboard.Application.Consumers.FileExplorer;
 using Giantnodes.Infrastructure.Storage;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +16,7 @@ namespace Giantnodes.Dashboard.Application
             services.AddFluentValidation(config =>
             {
                 config.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                config.RegisterValidatorsFromAssemblyContaining(typeof(GetDirectoryContentsQuery));
             });
 
             services.AddStorageServices(configuration);
@@ -32,11 +33,13 @@ namespace Giantnodes.Dashboard.Application
                     options
                         .SetKebabCaseEndpointNameFormatter();
 
+                    options
+                        .AddConsumer<GetDirectoryContentsConsumer>();
+
                     options.UsingRabbitMq((context, config) =>
                     {
                         config.ConfigureEndpoints(context);
-
-                        config.UseConsumeFilter(typeof(FluentValidationFilter<>), context);
+                        //config.UseConsumeFilter(typeof(FluentValidationFilter<>), context);
                     });
 
                 });

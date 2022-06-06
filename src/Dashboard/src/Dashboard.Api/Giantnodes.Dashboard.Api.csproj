@@ -7,12 +7,15 @@
 		<UserSecretsId>524c25d9-d8bf-4eea-bed1-0267126e81ac</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<PlatformTarget>AnyCPU</PlatformTarget>
+		<DockerfileContext>..\..</DockerfileContext>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HotChocolate.AspNetCore" Version="12.9.0" />
-		<PackageReference Include="HotChocolate.Types.Analyzers" Version="12.9.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+		<PackageReference Include="HotChocolate.AspNetCore" Version="12.10.0" />
+		<PackageReference Include="HotChocolate.Data" Version="12.10.0" />
+		<PackageReference Include="HotChocolate.Types.Analyzers" Version="12.10.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -21,10 +24,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Dashboard.Application\Giantnodes.Dashboard.Application.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Resolvers\" />
 	</ItemGroup>
 
 </Project>
