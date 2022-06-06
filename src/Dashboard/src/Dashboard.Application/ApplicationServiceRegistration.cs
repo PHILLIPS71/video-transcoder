@@ -1,6 +1,7 @@
 ﻿using FluentValidation.AspNetCore;
 using Giantnodes.Application.Validation;
 using Giantnodes.Dashboard.Persistence;
+using Giantnodes.Infrastructure.Storage;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,12 +18,13 @@ namespace Giantnodes.Dashboard.Application
                 config.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             });
 
-            services.AddMassTransitServices();
+            services.AddStorageServices(configuration);
+            services.AddMassTransitServices(configuration);
 
             return services;
         }
 
-        private static IServiceCollection AddMassTransitServices(this IServiceCollection services)
+        private static IServiceCollection AddMassTransitServices(this IServiceCollection services, IConfiguration configuration)
         {
             services
                 .AddMassTransit(options =>
