@@ -1,10 +1,11 @@
-import { Button } from "ui";
+import React from 'react';
+import { Button } from 'ui';
 
-export default function Docs() {
-  return (
-    <div>
-      <h1>Docs</h1>
-      <Button />
-    </div>
-  );
-}
+const Docs = () => (
+  <div>
+    <h1>Web</h1>
+    <Button />
+  </div>
+);
+
+export default Docs;
