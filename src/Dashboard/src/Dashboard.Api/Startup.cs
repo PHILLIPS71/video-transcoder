@@ -31,6 +31,7 @@ namespace Giantnodes.Dashboard.Api
 
             app
                 .UseRouting()
+                .UseCors()
                 .UseEndpoints(endpoint =>
                     endpoint
                         .MapGraphQL()

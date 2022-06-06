@@ -10,6 +10,7 @@ namespace Giantnodes.Dashboard.Api
         public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddCors().ConfigureOptions<ConfigureCorsOptions>();
 
             services
                 .AddGraphQLServer()
