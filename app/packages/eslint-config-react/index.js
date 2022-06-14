@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['prettier', 'airbnb', 'airbnb-typescript', 'airbnb/hooks'],
+  extends: ['airbnb', 'airbnb-typescript', 'airbnb/hooks', 'prettier'],
   rules: {
     '@typescript-eslint/consistent-type-imports': 'error',
     'react/jsx-props-no-spreading': 'off',
@@ -25,4 +25,4 @@ module.exports = {
       },
     ],
   },
-};
+}

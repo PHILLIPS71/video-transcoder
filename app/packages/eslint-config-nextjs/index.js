@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['next', 'prettier', 'airbnb', 'airbnb-typescript', 'airbnb/hooks'],
+  extends: ['next', 'airbnb', 'airbnb-typescript', 'airbnb/hooks', 'prettier'],
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
     '@typescript-eslint/consistent-type-imports': 'error',
