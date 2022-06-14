@@ -402,6 +402,7 @@ FodyWeavers.xsd
 .next/
 out/
 build
+dist/
 
 # misc
 .DS_Store
