@@ -19,9 +19,17 @@ module.exports = {
     'import/order': [
       'error',
       {
-        groups: ['type', 'builtin', 'external', 'parent', 'sibling', 'internal', 'index', 'object'],
         'newlines-between': 'always',
+        groups: ['type', 'builtin', 'external', 'parent', 'sibling', 'internal', 'index', 'object'],
         alphabetize: { order: 'asc', caseInsensitive: true },
+        pathGroupsExcludedImportTypes: [],
+        pathGroups: [
+          {
+            pattern: '@giantnodes/**',
+            group: 'external',
+            position: 'after',
+          },
+        ],
       },
     ],
   },
