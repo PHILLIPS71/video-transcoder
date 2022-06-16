@@ -4,11 +4,11 @@ using System.Text.RegularExpressions;
 
 namespace Giantnodes.Dashboard.Api
 {
-    public class SnakeCaseNamingConventions : DefaultNamingConventions
+    public class SnakeCaseNamingConvention : DefaultNamingConventions
     {
         public override NameString GetMemberName(MemberInfo member, MemberKind kind)
         {
-            if (kind == MemberKind.ObjectField)
+            if (kind is MemberKind.ObjectField or MemberKind.InterfaceField or MemberKind.InputObjectField)
             {
                 var pattern = new Regex(@"[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");
                 return string.Join("_", pattern.Matches(member.Name)).ToLower();

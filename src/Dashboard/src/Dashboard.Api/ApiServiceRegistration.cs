@@ -1,5 +1,4 @@
-﻿using Giantnodes.Dashboard.Abstractions.Common;
-using Giantnodes.Dashboard.Api.Configuration;
+﻿using Giantnodes.Dashboard.Api.Configuration;
 using HotChocolate.Types.Descriptors;
 using System.Reflection;
 
@@ -18,7 +17,7 @@ namespace Giantnodes.Dashboard.Api
                 .AddQueryType()
                 .AddFiltering()
                 .AddSorting()
-                //.AddConvention<INamingConventions, SnakeCaseNamingConventions>()
+                .AddConvention<INamingConventions, SnakeCaseNamingConvention>()
                 .AddMutationConventions();
 
             return services;
