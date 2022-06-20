@@ -7,6 +7,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { DarkTheme } from '@giantnodes/ui'
 
 import DefaultLayout from '@/layouts/DefaultLayout'
+import { options } from '@/library/graphql-request'
 
 import 'public/scss/main.scss'
 
@@ -47,7 +48,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Application = ({ Component, pageProps }: AppProps) => {
-  const [client] = React.useState(() => new QueryClient())
+  const [client] = React.useState(() => new QueryClient(options))
 
   return (
     <QueryClientProvider client={client}>
