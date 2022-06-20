@@ -29,10 +29,10 @@ const GET_DIRECTORY_CONTENTS = gql`
 const Web = () => {
   const { data, error, isFetching } = useGetDirectoryContentsQuery({
     input: {
-      directory: '//192.168.1.200/mnt/media/media/tvshows/The Boys/Season 1',
+      directory: '//192.168.1.200/mnt/media/media/tvshows',
     },
     order: {
-      length: SortEnumType.Desc,
+      name: SortEnumType.Asc,
     },
   })
 
@@ -42,13 +42,9 @@ const Web = () => {
 
   return (
     <div>
-      <h1>Web</h1>
-
-      <div>
-        {data?.directory_contents.map((node) => (
-          <p>{node.name}</p>
-        ))}
-      </div>
+      {data?.directory_contents.map((node) => (
+        <p>{node.name}</p>
+      ))}
     </div>
   )
 }
