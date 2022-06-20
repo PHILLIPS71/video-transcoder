@@ -29,6 +29,21 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
     overflow-x: hidden;
   }
+
+  ::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px 10px transparent;
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px ${(props) => props.theme.colours.background.tertiary};
+    border: solid 5px transparent;
+    border-radius: 16px;
+  }
 `
 
 const Application = ({ Component, pageProps }: AppProps) => {
