@@ -5,6 +5,8 @@ type FoundationColour = {
 }
 
 export type Colours = FoundationColour & {
+  black: string
+  white: string
   text: FoundationColour
   background: FoundationColour
 }

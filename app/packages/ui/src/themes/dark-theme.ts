@@ -9,6 +9,9 @@ const DarkTheme: DefaultTheme = {
     secondary: '#001e26',
     tertiary: '#06f4b6',
 
+    black: '#000000',
+    white: '#ffffff',
+
     text: {
       primary: '#ffffff',
       secondary: '#c9d1d9',
@@ -16,8 +19,8 @@ const DarkTheme: DefaultTheme = {
     },
 
     background: {
-      primary: '#121212',
-      secondary: '#202020',
+      primary: '#3b3b41',
+      secondary: '#232326',
       tertiary: '#292727',
     },
   },

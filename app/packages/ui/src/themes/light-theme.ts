@@ -9,6 +9,9 @@ const LightTheme: DefaultTheme = {
     secondary: '#001e26',
     tertiary: '#06f4b6',
 
+    black: '#000000',
+    white: '#ffffff',
+
     text: {
       primary: '#000000',
       secondary: '#838691',
@@ -16,9 +19,9 @@ const LightTheme: DefaultTheme = {
     },
 
     background: {
-      primary: '#ffffff',
-      secondary: '#f6f6f8',
-      tertiary: '#ededf0',
+      primary: '#f2f2f2',
+      secondary: '#ffffff',
+      tertiary: '#e5e5e5',
     },
   },
 }

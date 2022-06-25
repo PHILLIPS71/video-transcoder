@@ -2,12 +2,11 @@ import type { AppProps } from 'next/app'
 
 import React from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
-import { ThemeProvider, createGlobalStyle } from 'styled-components'
-
-import { DarkTheme } from '@giantnodes/ui'
+import { createGlobalStyle } from 'styled-components'
 
 import DefaultLayout from '@/layouts/DefaultLayout'
 import { options } from '@/library/graphql-request'
+import Theme from '@/Theme'
 
 import 'public/scss/main.scss'
 
@@ -53,13 +52,13 @@ const Application = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={client}>
       <Hydrate state={pageProps.dehydratedState}>
-        <ThemeProvider theme={DarkTheme}>
+        <Theme>
           <GlobalStyle />
 
           <DefaultLayout>
             <Component {...pageProps} />
           </DefaultLayout>
-        </ThemeProvider>
+        </Theme>
       </Hydrate>
     </QueryClientProvider>
   )
