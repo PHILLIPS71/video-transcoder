@@ -45,7 +45,7 @@ const DefaultLayout: Layout = ({ children }) => {
           <Block display="flex" position="relative" flex="1 1 0%" flexDirection="row" overflow="hidden">
             <NavigationSidebar />
 
-            <Block display="flex" overflow="auto" height="100%" width="100%" padding="0 32px">
+            <Block overflow="auto" width="100%" padding="32px">
               {children}
             </Block>
           </Block>

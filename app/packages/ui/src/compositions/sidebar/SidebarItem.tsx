@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const SidebarItem = styled.li`
   align-items: center;
-  color: ${(props) => props.theme.colours.text.secondary};
+  color: ${(props) => props.theme.colors.text.secondary};
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -11,7 +11,7 @@ const SidebarItem = styled.li`
   width: 100%;
 
   &:hover {
-    color: ${(props) => props.theme.colours.primary};
+    color: ${(props) => props.theme.colors.primary};
   }
 `
 

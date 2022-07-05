@@ -52,12 +52,12 @@ const DarkThemeOption = styled(ThemeOption)`
   z-index: 0;
 
   svg {
-    stroke: ${(props) => props.theme.colours.white};
+    stroke: ${(props) => props.theme.colors.white};
   }
 `
 
 const LightThemeOption = styled(ThemeOption)`
-  background: ${(props) => props.theme.colours.white};
+  background: ${(props) => props.theme.colors.white};
   border-color: #dedede;
   opacity: 1;
   z-index: 1;

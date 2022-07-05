@@ -4,7 +4,7 @@ const DarkTheme: DefaultTheme = {
   fonts: {
     text: 'Lato, sans-serif',
   },
-  colours: {
+  colors: {
     primary: '#23a166',
     secondary: '#001e26',
     tertiary: '#06f4b6',
@@ -14,14 +14,14 @@ const DarkTheme: DefaultTheme = {
 
     text: {
       primary: '#ffffff',
-      secondary: '#c9d1d9',
-      tertiary: '#ffffff',
+      secondary: '#a2a5b9',
+      tertiary: '#334056',
     },
 
     background: {
-      primary: '#3b3b41',
-      secondary: '#232326',
-      tertiary: '#292727',
+      primary: '#151a23',
+      secondary: '#1a212c',
+      tertiary: '#262f40',
     },
   },
 }

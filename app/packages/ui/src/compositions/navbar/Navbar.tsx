@@ -19,8 +19,8 @@ type NavbarComponent = React.FC<NavbarProps> & {
 }
 
 const NavbarElement = styled.nav<NavbarProps>`
-  background-color: ${(props) => props.theme.colours.background.secondary};
-  border-bottom: 1px solid ${(props) => props.theme.colours.background.tertiary};
+  background-color: ${(props) => props.theme.colors.background.primary};
+  border-bottom: 1px solid ${(props) => props.theme.colors.background.tertiary};
   box-shadow: none;
   display: flex;
   flex-direction: row;

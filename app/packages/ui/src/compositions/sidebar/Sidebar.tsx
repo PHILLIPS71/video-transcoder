@@ -21,8 +21,8 @@ type SidebarComponent = React.FC<SidebarProps> & {
 }
 
 const SidebarElement = styled.aside<SidebarProps>`
-  background-color: ${(props) => props.theme.colours.background.secondary};
-  border-right: 1px solid ${(props) => props.theme.colours.background.tertiary};
+  background-color: ${(props) => props.theme.colors.background.primary};
+  border-right: 1px solid ${(props) => props.theme.colors.background.tertiary};
   display: flex;
   flex-direction: column;
   height: 100%;

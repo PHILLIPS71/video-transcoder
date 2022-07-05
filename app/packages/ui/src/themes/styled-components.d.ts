@@ -7,6 +7,6 @@ declare module 'styled-components' {
     fonts: {
       text: string
     }
-    colours: Colours
+    colors: Colours
   }
 }

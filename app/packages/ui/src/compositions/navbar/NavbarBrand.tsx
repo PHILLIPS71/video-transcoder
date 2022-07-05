@@ -7,7 +7,6 @@ const NavbarBrand = styled.div`
   height: 60px;
   justify-content: center;
   overflow: hidden;
-  width: 0;
 
   img {
     width: 100%;

@@ -13,8 +13,8 @@ import 'public/scss/main.scss'
 const GlobalStyle = createGlobalStyle`
   html, body {
     font-family: ${(props) => props.theme.fonts.text};
-    background-color:  ${(props) => props.theme.colours.background.primary};
-    color:  ${(props) => props.theme.colours.text.primary};
+    background-color:  ${(props) => props.theme.colors.background.secondary};
+    color:  ${(props) => props.theme.colors.text.primary};
     position: relative;
     overflow-y: hidden;
     height: 100%;
@@ -40,9 +40,19 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    box-shadow: inset 0 0 10px 10px ${(props) => props.theme.colours.background.tertiary};
+    box-shadow: inset 0 0 10px 10px ${(props) => props.theme.colors.background.tertiary};
     border: solid 5px transparent;
     border-radius: 16px;
+  }
+
+  a {
+    text-decoration: none;
+    color:  ${(props) => props.theme.colors.text.primary};
+
+    &:hover {
+      text-decoration: underline;
+      color:  ${(props) => props.theme.colors.primary};
+    }
   }
 `
 

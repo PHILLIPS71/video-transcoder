@@ -32,7 +32,11 @@ const NavigationBar = () => {
 
               {!context.isMobile && <Navbar.Item />}
 
-              <Navbar.Item>Giantnodes</Navbar.Item>
+              <Navbar.Item>
+                <Navbar.Brand>
+                  <img src="images/giantnodes-logo.png" alt="giantnodes logo" />
+                </Navbar.Brand>
+              </Navbar.Item>
             </Navbar.Items>
 
             <Navbar.Items align="flex-end">
