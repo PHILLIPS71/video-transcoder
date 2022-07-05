@@ -1,6 +1,27 @@
 import type { DefaultTheme } from 'styled-components'
 
 const LightTheme: DefaultTheme = {
+  layout: {
+    width: '1408px',
+    breakpoints: {
+      mobile: {
+        min: '0px',
+        max: '768px',
+      },
+      tablet: {
+        min: '769px',
+        max: '1023px',
+      },
+      desktop: {
+        min: '1024px',
+        max: '1215px',
+      },
+      widescreen: {
+        min: '1216px',
+        max: '100vw',
+      },
+    },
+  },
   fonts: {
     text: 'Lato, sans-serif',
   },
