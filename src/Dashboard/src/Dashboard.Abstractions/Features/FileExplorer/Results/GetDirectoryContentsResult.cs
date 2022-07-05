@@ -7,11 +7,11 @@ namespace Giantnodes.Dashboard.Abstractions.Features.FileExplorer
         /// <summary>
         /// The array of directories found inside a node in a file system hierarchy.
         /// </summary>
-        public FileSystemDirectory[] Directories { get; init; } = new FileSystemDirectory[0];
+        public FileSystemDirectory[] Directories { get; init; } = Array.Empty<FileSystemDirectory>();
 
         /// <summary>
         /// The array of files found inside a node in a file system hierarchy.
         /// </summary>
-        public FileSystemFile[] Files { get; init; } = new FileSystemFile[0];
+        public FileSystemFile[] Files { get; init; } = Array.Empty<FileSystemFile>();
     }
 }

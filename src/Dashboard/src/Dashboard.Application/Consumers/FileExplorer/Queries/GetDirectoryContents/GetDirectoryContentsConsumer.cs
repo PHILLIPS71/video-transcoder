@@ -18,7 +18,6 @@ namespace Giantnodes.Dashboard.Application.Consumers.FileExplorer
                 {
                     Path = file.FullName,
                     Name = file.Name,
-                    Length = file.Length,
                     DirectoryName = file.DirectoryName,
                     IsReadOnly = file.IsReadOnly,
                     CreatedAtUtc = file.CreationTimeUtc,
@@ -30,7 +29,6 @@ namespace Giantnodes.Dashboard.Application.Consumers.FileExplorer
                 {
                     Path = directory.FullName,
                     Name = directory.Name,
-                    Length = directory.GetSize(),
                     CreatedAtUtc = directory.CreationTimeUtc,
                     ModifiedAtUtc = directory.LastWriteTimeUtc
                 }).ToArray();

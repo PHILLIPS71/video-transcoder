@@ -16,11 +16,6 @@
         string Name { get; set; }
 
         /// <summary>
-        /// The size in bytes of the current file or directory.
-        /// </summary>
-        long Length { get; set; }
-
-        /// <summary>
         ///  The creation time in coordinated universal time (UTC)
         /// </summary>
         DateTime CreatedAtUtc { get; set; }

@@ -7,7 +7,7 @@ namespace Giantnodes.Infrastructure.Storage.Configuration
         public ValidateOptionsResult Validate(string name, StorageSettings? options)
         {
             if (options is null)
-                return ValidateOptionsResult.Fail($"The '{nameof(StorageSettings)}' Configuration object is null.");
+                return ValidateOptionsResult.Fail($"The '{nameof(StorageSettings)}' configuration object is null.");
 
             if (string.IsNullOrWhiteSpace(options.Directory))
                 return ValidateOptionsResult.Fail($"Property '{nameof(options.Directory)}' cannot be blank.");

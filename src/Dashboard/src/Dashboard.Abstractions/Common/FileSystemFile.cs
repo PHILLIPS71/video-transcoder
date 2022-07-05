@@ -11,9 +11,6 @@
         /// <inheritdoc />
         public string Name { get; set; } = null!;
 
-        /// <inheritdoc />
-        public long Length { get; set; }
-
         /// <summary>
         /// Defines if the current file is read only.
         /// </summary>

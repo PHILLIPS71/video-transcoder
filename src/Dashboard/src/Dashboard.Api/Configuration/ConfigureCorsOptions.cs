@@ -12,7 +12,7 @@ namespace Giantnodes.Dashboard.Api.Configuration
             this.configuration = configuration;
         }
 
-        public void Configure(string name, CorsOptions options)
+        public void Configure(CorsOptions options)
         {
             options.AddDefaultPolicy(builder =>
             {
@@ -24,7 +24,7 @@ namespace Giantnodes.Dashboard.Api.Configuration
             });
         }
 
-        public void Configure(CorsOptions options)
+        public void Configure(string name, CorsOptions options)
         {
             Configure(options);
         }
