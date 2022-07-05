@@ -5,7 +5,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { createGlobalStyle } from 'styled-components'
 
 import DefaultLayout from '@/layouts/DefaultLayout'
-import { options } from '@/library/graphql-request'
+import { options } from '@/library/graphql-fetch'
 import Theme from '@/Theme'
 
 import 'public/scss/main.scss'

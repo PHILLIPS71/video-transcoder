@@ -13,4 +13,4 @@ generates:
       strict: true
       namingConvention:
         transformUnderscore: true
-      fetcher: '@/library/graphql-request#fetcher'
+      fetcher: '@/library/graphql-fetch#fetcher'

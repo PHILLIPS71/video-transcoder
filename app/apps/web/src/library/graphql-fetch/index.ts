@@ -1,8 +1,9 @@
 import type { QueryClientConfig } from 'react-query'
 
-import { GraphQLClient } from 'graphql-request'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { GraphQLClient } from 'graphql-fetch'
 
-const client = new GraphQLClient(process.env.NEXT_PUBLIC_API_URI)
+export const client = new GraphQLClient(process.env.NEXT_PUBLIC_API_URI)
 
 export const fetcher =
   <TData, TVariables>(query: string, variables?: TVariables) =>
@@ -13,6 +14,7 @@ export const options: QueryClientConfig = {
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
+      retry: false,
     },
   },
 }
