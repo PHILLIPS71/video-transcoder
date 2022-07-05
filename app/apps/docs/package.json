@@ -9,18 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^12.1.6",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "ui": "*"
+    "@giantnodes/ui": "*",
+    "next": "^12.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@giantnodes/eslint-config-nextjs": "*",
     "@giantnodes/tsconfig": "*",
-    "@types/node": "^17.0.12",
-    "@types/react": "^18.0.12",
-    "eslint": "^8.17.0",
+    "@types/node": "^18.0.1",
+    "@types/react": "^18.0.14",
+    "eslint": "^8.19.0",
     "next-transpile-modules": "9.0.0",
-    "typescript": "^4.5.3"
+    "typescript": "^4.7.4"
   }
 }
