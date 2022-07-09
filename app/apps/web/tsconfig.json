@@ -1,6 +1,6 @@
 {
   "extends": "@giantnodes/tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lingui.config.js"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "jsx": "preserve",

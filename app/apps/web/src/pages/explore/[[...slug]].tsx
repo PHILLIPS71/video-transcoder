@@ -1,6 +1,7 @@
 import type { GetDirectoryContentsQuery, GetDirectoryContentsQueryVariables } from '@/__generated__/graphql-types'
 import type { GetServerSideProps, NextPage } from 'next'
 
+import { Trans } from '@lingui/macro'
 import { gql } from 'graphql-tag'
 import React from 'react'
 
@@ -82,7 +83,20 @@ const ExplorePage: NextPage<ExplorePageProps> = ({ path }: ExplorePageProps) => 
       <Grid.Column span={[4, 8, 4, 4]}>
         <Card>
           <Card.Header>
-            <Heading level={6}>File Containers</Heading>
+            <Heading level={6}>
+              <Trans>File Containers</Trans>
+            </Heading>
+          </Card.Header>
+          <Card.Body>
+            <DirectoryContainerStatistics path={path} />
+          </Card.Body>
+        </Card>
+
+        <Card>
+          <Card.Header>
+            <Heading level={6}>
+              <Trans>File Codecs</Trans>
+            </Heading>
           </Card.Header>
           <Card.Body>
             <DirectoryContainerStatistics path={path} />

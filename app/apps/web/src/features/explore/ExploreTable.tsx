@@ -1,5 +1,6 @@
 import type { GetDirectoryContentsQuery } from '@/__generated__/graphql-types'
 
+import { Trans } from '@lingui/macro'
 import filesize from 'filesize'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -37,8 +38,12 @@ const ExploreTable = ({ directory }: ExploreTableProps) => {
     <Table bordered>
       <Table.Head>
         <Table.Row>
-          <Table.Heading>Name</Table.Heading>
-          <Table.Heading textAlign="right">Size</Table.Heading>
+          <Table.Heading>
+            <Trans>Name</Trans>
+          </Table.Heading>
+          <Table.Heading textAlign="right">
+            <Trans>Size</Trans>
+          </Table.Heading>
         </Table.Row>
       </Table.Head>
 

@@ -4,6 +4,7 @@ import React from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { createGlobalStyle } from 'styled-components'
 
+import { LocaleProvider } from '@/contexts/i18n/LocaleContext'
 import { ThemeProvider } from '@/contexts/theme/ThemeContext'
 import DefaultLayout from '@/layouts/DefaultLayout'
 import { options } from '@/library/graphql-fetch'
@@ -62,6 +63,7 @@ const Application = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={client}>
       <Hydrate state={pageProps.dehydratedState}>
+        <LocaleProvider>
           <ThemeProvider>
             <GlobalStyle />
 
@@ -69,6 +71,7 @@ const Application = ({ Component, pageProps }: AppProps) => {
               <Component {...pageProps} />
             </DefaultLayout>
           </ThemeProvider>
+        </LocaleProvider>
       </Hydrate>
     </QueryClientProvider>
   )

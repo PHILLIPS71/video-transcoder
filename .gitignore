@@ -426,3 +426,6 @@ __generated__/
 
 # turbo
 .turbo
+
+# generated locale lingui files
+**/apps/**/locales/*/*.js
