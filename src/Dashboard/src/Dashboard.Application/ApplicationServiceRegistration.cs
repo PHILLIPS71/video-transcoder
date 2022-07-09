@@ -36,6 +36,9 @@ namespace Giantnodes.Dashboard.Application
                     options
                         .AddConsumer<GetDirectoryContentsConsumer>();
 
+                    options
+                        .AddConsumer<GetDirectoryContainerStatisticsConsumer>();
+
                     options.UsingRabbitMq((context, config) =>
                     {
                         config.ConfigureEndpoints(context);
