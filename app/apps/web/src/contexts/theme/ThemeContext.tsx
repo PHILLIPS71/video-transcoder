@@ -1,29 +1,25 @@
 import type { DefaultTheme } from 'styled-components'
 
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider as StyledComponentsThemeProvider } from 'styled-components'
 
 import { DarkTheme, LightTheme } from '@giantnodes/ui'
-
-type ThemeProps = {
-  children: React.ReactElement[]
-}
 
 export type ThemeContext = {
   theme: DefaultTheme
   setTheme: React.Dispatch<React.SetStateAction<DefaultTheme>>
 }
 
-type ThemeComponent = React.FC<ThemeProps> & {
-  Context: React.Context<ThemeContext>
+type ThemeProviderProps = {
+  children: React.ReactElement | React.ReactElement[]
 }
 
 const Context = React.createContext<ThemeContext>({
   theme: LightTheme,
   setTheme: () => null,
-} as ThemeContext)
+})
 
-const Theme: ThemeComponent = ({ children }) => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const getTheme = (): DefaultTheme => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('theme')
@@ -50,11 +46,9 @@ const Theme: ThemeComponent = ({ children }) => {
 
   return (
     <Context.Provider value={value}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <StyledComponentsThemeProvider theme={theme}>{children}</StyledComponentsThemeProvider>
     </Context.Provider>
   )
 }
 
-Theme.Context = Context
-
-export default Theme
+export default Context

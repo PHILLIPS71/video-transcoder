@@ -1,6 +1,13 @@
+import type { ThemeContext } from '@/contexts/theme/ThemeContext'
+import type { DefaultTheme } from 'styled-components'
+
 import React from 'react'
 import { Moon, Sun } from 'react-feather'
 import styled from 'styled-components'
+
+import { DarkTheme, LightTheme } from '@giantnodes/ui'
+
+import Theme from '@/contexts/theme/ThemeContext'
 
 const Label = styled.label`
   width: 54px;
@@ -87,20 +94,41 @@ const Checkbox = styled.input`
   }
 `
 
-type ThemeToggleProps = React.HTMLProps<HTMLInputElement>
+type ThemeToggleProps = React.HTMLProps<HTMLInputElement> & {
+  onChange?: (theme: DefaultTheme) => void
+}
 
-const ThemeToggle: React.FC<ThemeToggleProps> = ({ checked, onChange }) => (
-  <Label>
-    <Checkbox type="checkbox" checked={checked} onChange={onChange} />
-    <ThemeOptionContainer>
-      <DarkThemeOption>
-        <Moon />
-      </DarkThemeOption>
-      <LightThemeOption>
-        <Sun />
-      </LightThemeOption>
-    </ThemeOptionContainer>
-  </Label>
-)
+const ThemeSwitcher: React.FC<ThemeToggleProps> = ({ onChange }) => {
+  const { theme, setTheme } = React.useContext<ThemeContext>(Theme)
+  const [isChecked, setChecked] = React.useState<boolean>(theme !== LightTheme)
 
-export default ThemeToggle
+  const onThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.checked ? DarkTheme : LightTheme
+    setChecked(event.target.checked)
+    setTheme(value)
+
+    if (onChange) {
+      onChange(value)
+    }
+  }
+
+  return (
+    <Label>
+      <Checkbox type="checkbox" checked={isChecked} onChange={onThemeChange} />
+      <ThemeOptionContainer>
+        <DarkThemeOption>
+          <Moon />
+        </DarkThemeOption>
+        <LightThemeOption>
+          <Sun />
+        </LightThemeOption>
+      </ThemeOptionContainer>
+    </Label>
+  )
+}
+
+ThemeSwitcher.defaultProps = {
+  onChange: () => null,
+}
+
+export default ThemeSwitcher

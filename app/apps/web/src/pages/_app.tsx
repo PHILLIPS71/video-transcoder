@@ -4,9 +4,9 @@ import React from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { createGlobalStyle } from 'styled-components'
 
+import { ThemeProvider } from '@/contexts/theme/ThemeContext'
 import DefaultLayout from '@/layouts/DefaultLayout'
 import { options } from '@/library/graphql-fetch'
-import Theme from '@/Theme'
 
 import 'public/scss/main.scss'
 
@@ -62,13 +62,13 @@ const Application = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={client}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Theme>
-          <GlobalStyle />
+          <ThemeProvider>
+            <GlobalStyle />
 
-          <DefaultLayout>
-            <Component {...pageProps} />
-          </DefaultLayout>
-        </Theme>
+            <DefaultLayout>
+              <Component {...pageProps} />
+            </DefaultLayout>
+          </ThemeProvider>
       </Hydrate>
     </QueryClientProvider>
   )
