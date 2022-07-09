@@ -4,8 +4,11 @@ import type { GetServerSideProps, NextPage } from 'next'
 import { gql } from 'graphql-tag'
 import React from 'react'
 
+import { Card, Grid, Heading } from '@giantnodes/ui'
+
 import { SortEnumType } from '@/__generated__/graphql-types'
 import ExploreTable from '@/features/explore/ExploreTable'
+import DirectoryContainerStatistics from '@/features/explore/widgets/DirectoryContainerStatistics'
 import { client } from '@/library/graphql-fetch'
 
 const GET_DIRECTORY_CONTENTS = gql`
@@ -70,7 +73,24 @@ const ExplorePage: NextPage<ExplorePageProps> = ({ path }: ExplorePageProps) => 
     return <>LOADING...</>
   }
 
-  return <ExploreTable directory={directory} />
+  return (
+    <Grid>
+      <Grid.Column span={[4, 8, 8, 12]}>
+        <ExploreTable directory={directory} />
+      </Grid.Column>
+
+      <Grid.Column span={[4, 8, 4, 4]}>
+        <Card>
+          <Card.Header>
+            <Heading level={6}>File Containers</Heading>
+          </Card.Header>
+          <Card.Body>
+            <DirectoryContainerStatistics path={path} />
+          </Card.Body>
+        </Card>
+      </Grid.Column>
+    </Grid>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps<ExplorePageProps> = async (context) => {
