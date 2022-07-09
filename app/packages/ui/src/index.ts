@@ -1,3 +1,4 @@
+export * from '@/blocks'
 export * from '@/compositions'
 export * from '@/elements'
 

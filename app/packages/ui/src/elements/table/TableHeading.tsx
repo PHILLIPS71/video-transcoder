@@ -1,15 +1,15 @@
-import type { TextAlignProps } from 'styled-foundations'
+import type { TypographyProps } from 'styled-foundations'
 
 import styled from 'styled-components'
-import { textAlign } from 'styled-foundations'
+import { typography } from 'styled-foundations'
 
-type TableHeadProps = TextAlignProps
+type TableHeadProps = TypographyProps
 
 const TableHead = styled.th<TableHeadProps>`
   padding: 8px 16px;
   vertical-align: middle;
 
-  ${textAlign}
+  ${typography}
 `
 
 export default TableHead

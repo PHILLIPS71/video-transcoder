@@ -1,15 +1,15 @@
 import type { TableContext } from '@/elements/table/Table'
-import type { TextAlignProps } from 'styled-foundations'
+import type { TypographyProps } from 'styled-foundations'
 
 import React from 'react'
 import styled from 'styled-components'
-import { textAlign } from 'styled-foundations'
+import { typography } from 'styled-foundations'
 
 import Table from '@/elements/table/Table'
 
 type TableCellProps = React.HTMLAttributes<HTMLTableCellElement> &
   TableContext &
-  TextAlignProps & {
+  TypographyProps & {
     children: string | React.ReactElement
   }
 
@@ -22,7 +22,7 @@ const TableCellElement = styled.td<TableCellProps>`
     background-color: ${(props) => (props.hoverable ? props.theme.colors.background.secondary : 'unset')};
   }
 
-  ${textAlign}
+  ${typography}
 `
 
 const TableCell: React.FC<TableCellProps> = ({ children, ...rest }) => (

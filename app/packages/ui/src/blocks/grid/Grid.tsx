@@ -2,7 +2,7 @@ import type { Responsive } from '@/utilities/responsive'
 import type { Property } from 'csstype'
 import type { DefaultTheme, ThemedStyledProps } from 'styled-components'
 
-import React from 'react'
+import React, { createContext } from 'react'
 import styled from 'styled-components'
 
 import GridColumn from '@/blocks/grid/GridColumn'
@@ -23,12 +23,12 @@ type GridProps = Partial<GridContext> & {
 }
 
 const defaultState: GridContext = {
-  columns: [4, 8, 12, 12],
+  columns: [4, 8, 12, 16],
   gaps: [16, 16, 16, 16],
   gutters: [16, 16, 16, 16],
 }
 
-const { Provider, Consumer } = React.createContext<GridContext>(defaultState)
+const { Provider, Consumer } = createContext<GridContext>(defaultState)
 
 type GridComponent = React.FC<GridProps> & {
   Consumer: React.Consumer<GridContext>
@@ -41,14 +41,14 @@ const getGridStyles = ({ theme, align, behavior, gutters, margins }: ThemedStyle
     (acc, cur, idx) => ({
       ...acc,
       [cur]: {
-        paddingLeft: getResponsiveNumber(margins, idx) - getResponsiveNumber(gutters, idx) / 2 - 0.5,
-        paddingRight: getResponsiveNumber(margins, idx) - getResponsiveNumber(gutters, idx) / 2 - 0.5,
+        paddingLeft: Math.max(0, getResponsiveNumber(margins, idx) - getResponsiveNumber(gutters, idx) / 2 - 0.5),
+        paddingRight: Math.max(0, getResponsiveNumber(margins, idx) - getResponsiveNumber(gutters, idx) / 2 - 0.5),
         alignItems: `${getResponsiveValue(align, idx)}`,
       },
     }),
     {
-      paddingLeft: getResponsiveNumber(margins, 0) - getResponsiveNumber(gutters, 0) / 2 - 0.5,
-      paddingRight: getResponsiveNumber(margins, 0) - getResponsiveNumber(gutters, 0) / 2 - 0.5,
+      paddingLeft: Math.max(0, getResponsiveNumber(margins, 0) - getResponsiveNumber(gutters, 0) / 2 - 0.5),
+      paddingRight: Math.max(0, getResponsiveNumber(margins, 0) - getResponsiveNumber(gutters, 0) / 2 - 0.5),
       alignItems: getResponsiveValue(align, 0),
     }
   )
@@ -92,8 +92,8 @@ Grid.Column = GridColumn
 Grid.defaultProps = {
   align: 'flex-start',
   behavior: 'fluid',
-  gutters: [8, 16, 36, 64],
-  margins: [8, 16, 36, 64],
+  gutters: 0,
+  margins: 0,
 }
 
 export default Grid
