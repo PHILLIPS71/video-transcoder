@@ -1,4 +1,6 @@
-﻿namespace System.IO
+﻿using System.IO.Abstractions;
+
+namespace System.IO
 {
     public static class FileInfoExtensions
     {
@@ -9,6 +11,15 @@
         /// <param name="file">A file to check the media type of.</param>
         /// <returns></returns>
         public static bool IsMediaFile(this FileInfo file)
+        {
+            var extension = file.Extension;
+            if (string.IsNullOrEmpty(extension))
+                return false;
+
+            return _extensions.Contains(extension);
+        }
+
+        public static bool IsMediaFile(this IFileInfo file)
         {
             var extension = file.Extension;
             if (string.IsNullOrEmpty(extension))

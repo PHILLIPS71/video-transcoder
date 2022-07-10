@@ -1,20 +1,27 @@
-﻿using Giantnodes.Dashboard.Abstractions.Features.FileExplorer;
-using Giantnodes.Dashboard.Abstractions.Features.Statistics.Queries.GetDirectoryContainerStatistics;
+﻿using Giantnodes.Dashboard.Abstractions.Features.Statistics.Queries.GetDirectoryContainerStatistics;
 using MassTransit;
+using System.IO.Abstractions;
 
 namespace Giantnodes.Dashboard.Application.Consumers.Statistics.Queries
 {
     public class GetDirectoryContainerStatisticsConsumer : IConsumer<GetDirectoryContainerStatistics>
     {
+        private readonly IFileSystem _system;
+
+        public GetDirectoryContainerStatisticsConsumer(IFileSystem system)
+        {
+            this._system = system;
+        }
+
         public async Task Consume(ConsumeContext<GetDirectoryContainerStatistics> context)
         {
-            if (!Directory.Exists(context.Message.Directory))
+            if (!_system.Directory.Exists(context.Message.Directory))
             {
                 await context.RejectAsync<GetDirectoryContainerStatisticsRejected, GetDirectoryContainerStatisticsRejection>(GetDirectoryContainerStatisticsRejection.DIRECTORY_NOT_FOUND);
                 return;
             }
 
-            var directory = new DirectoryInfo(context.Message.Directory);
+            var directory = _system.DirectoryInfo.FromDirectoryName(context.Message.Directory);
             var files = directory.GetFiles("*", SearchOption.AllDirectories)
                 .Where(file => file.IsMediaFile())
                 .ToArray();
