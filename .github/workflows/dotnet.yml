@@ -4,20 +4,16 @@ on:
   push:
     paths:
       - 'src/**'
-      - 'tests/**'
-      - 'Giantnodes.Dashboard.sln'
       - '**/dotnet.yml'
   pull_request:
     paths:
       - 'src/**'
-      - 'tests/**'
-      - 'Giantnodes.Dashboard.sln'
       - '**/dotnet.yml'
   workflow_dispatch:
 
 jobs:
-  build:
-    name: build
+  test-dashboard:
+    name: Dashboard
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -29,9 +25,12 @@ jobs:
     
     - name: Restore dependencies
       run: dotnet restore
+      working-directory:  src/Dashboard
     
     - name: Build
       run: dotnet build --no-restore
+      working-directory:  src/Dashboard
    
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      working-directory: src/Dashboard
