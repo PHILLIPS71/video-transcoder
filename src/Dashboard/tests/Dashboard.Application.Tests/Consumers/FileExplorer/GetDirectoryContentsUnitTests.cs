@@ -17,31 +17,31 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.FileExplorer
     {
         private readonly ServiceProvider _provider;
         private readonly MockFileSystem _system = new MockFileSystem(new Dictionary<string, MockFileData> {
-            { @"C:\Media\Silicon Valley\Season 1", new MockDirectoryData() },
-            { @"C:\Media\Silicon Valley\Season 1\.DS_Store", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 1\poster.png", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 1\Silicon Valley - S01E01 - Minimum Viable Product.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 1\Silicon Valley - S01E02 - The Cap Table.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 1\Silicon Valley - S01E03 - Articles of Incorporation.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 1\Silicon Valley - S01E04 - Fiduciary Duties.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 1\Silicon Valley - S01E05 - Signaling Risk.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 1\Silicon Valley - S01E06 - Third Party Insourcing.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 1\Silicon Valley - S01E07 - Proof of Concept.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 1\Silicon Valley - S01E08 - Optimal Tip-to-Tip Efficiency.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 1", new MockDirectoryData() },
+            { @"/media/tvshows/Silicon Valley/Season 1/.DS_Store", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 1/poster.png", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 1/Silicon Valley - S01E01 - Minimum Viable Product.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 1/Silicon Valley - S01E02 - The Cap Table.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 1/Silicon Valley - S01E03 - Articles of Incorporation.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 1/Silicon Valley - S01E04 - Fiduciary Duties.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 1/Silicon Valley - S01E05 - Signaling Risk.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 1/Silicon Valley - S01E06 - Third Party Insourcing.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 1/Silicon Valley - S01E07 - Proof of Concept.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 1/Silicon Valley - S01E08 - Optimal Tip-to-Tip Efficiency.mp4", new MockFileData(string.Empty) },
 
-            { @"C:\Media\Silicon Valley\Season 2", new MockDirectoryData() },
-            { @"C:\Media\Silicon Valley\Season 2\.DS_Store", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\poster.png", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\Silicon Valley - S02E01 - Sand Hill Shuffle.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\Silicon Valley - S02E02 - Runaway Devaluation.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\Silicon Valley - S02E03 - Bad Money.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\Silicon Valley - S02E04 - The Lady.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\Silicon Valley - S02E05 - Server Space.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\Silicon Valley - S02E06 - Homicide.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\Silicon Valley - S02E07 - Adult Content.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\Silicon Valley - S02E08 - White Hat/Black Hat.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\Silicon Valley - S02E09 - Binding Arbitration.mp4", new MockFileData(string.Empty) },
-            { @"C:\Media\Silicon Valley\Season 2\Silicon Valley - S02E10 - Two Days of the Condor.mp4", new MockFileData(string.Empty) }
+            { @"/media/tvshows/Silicon Valley/Season 2", new MockDirectoryData() },
+            { @"/media/tvshows/Silicon Valley/Season 2/.DS_Store", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/poster.png", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/Silicon Valley - S02E01 - Sand Hill Shuffle.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/Silicon Valley - S02E02 - Runaway Devaluation.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/Silicon Valley - S02E03 - Bad Money.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/Silicon Valley - S02E04 - The Lady.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/Silicon Valley - S02E05 - Server Space.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/Silicon Valley - S02E06 - Homicide.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/Silicon Valley - S02E07 - Adult Content.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/Silicon Valley - S02E08 - White Hat/Black Hat.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/Silicon Valley - S02E09 - Binding Arbitration.mp4", new MockFileData(string.Empty) },
+            { @"/media/tvshows/Silicon Valley/Season 2/Silicon Valley - S02E10 - Two Days of the Condor.mp4", new MockFileData(string.Empty) }
         });
 
         public GetDirectoryContentsUnitTests()
@@ -84,7 +84,7 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.FileExplorer
             // Arrange
             var query = new GetDirectoryContents
             {
-                Directory = @"C:\Media\Silicon Valley\Season 1"
+                Directory = @"/media/tvshows/Silicon Valley/Season 1"
             };
 
             var harness = _provider.GetRequiredService<ITestHarness>();
@@ -108,7 +108,7 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.FileExplorer
             // Arrange
             var query = new GetDirectoryContents
             {
-                Directory = @"C:\Media\Silicon Valley\Season 1"
+                Directory = @"/media/tvshows/Silicon Valley/Season 1"
             };
 
             var harness = _provider.GetRequiredService<ITestHarness>();
@@ -141,7 +141,7 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.FileExplorer
             // Arrange
             var query = new GetDirectoryContents
             {
-                Directory = @"C:\Media\Silicon Valley"
+                Directory = @"/media/tvshows/Silicon Valley"
             };
 
             var harness = _provider.GetRequiredService<ITestHarness>();
