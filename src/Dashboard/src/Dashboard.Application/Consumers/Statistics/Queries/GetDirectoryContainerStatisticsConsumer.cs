@@ -1,16 +1,18 @@
 ﻿using Giantnodes.Dashboard.Abstractions.Features.FileExplorer;
-using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries;
-using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Results;
+using Giantnodes.Dashboard.Abstractions.Features.Statistics.Queries.GetDirectoryContainerStatistics;
 using MassTransit;
 
-namespace Giantnodes.Dashboard.Application.Consumers.FileExplorer
+namespace Giantnodes.Dashboard.Application.Consumers.Statistics.Queries
 {
-    public class GetDirectoryContainerStatisticsConsumer : IConsumer<GetDirectoryContainerStatisticsQuery>
+    public class GetDirectoryContainerStatisticsConsumer : IConsumer<GetDirectoryContainerStatistics>
     {
-        public async Task Consume(ConsumeContext<GetDirectoryContainerStatisticsQuery> context)
+        public async Task Consume(ConsumeContext<GetDirectoryContainerStatistics> context)
         {
             if (!Directory.Exists(context.Message.Directory))
+            {
+                await context.RejectAsync<GetDirectoryContainerStatisticsRejected, GetDirectoryContainerStatisticsRejection>(GetDirectoryContainerStatisticsRejection.DIRECTORY_NOT_FOUND);
                 return;
+            }
 
             var directory = new DirectoryInfo(context.Message.Directory);
             var files = directory.GetFiles("*", SearchOption.AllDirectories)

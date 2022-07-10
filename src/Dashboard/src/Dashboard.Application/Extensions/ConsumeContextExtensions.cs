@@ -1,5 +1,5 @@
-﻿using Giantnodes.Dashboard.Abstractions;
-using Giantnodes.Infrastructure;
+﻿using Giantnodes.Infrastructure;
+using Giantnodes.Infrastructure.Messages;
 
 namespace MassTransit
 {
@@ -14,7 +14,7 @@ namespace MassTransit
                 {
                     ConversationId = context.ConversationId,
                     TimeStamp = DateTime.UtcNow,
-                    Code = code,
+                    ErrorCode = code,
                     Reason = reason ?? code.GetStringValue(),
                 });
 

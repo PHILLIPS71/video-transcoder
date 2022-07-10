@@ -1,6 +1,6 @@
 ﻿using Giantnodes.Dashboard.Abstractions.Common;
 
-namespace Giantnodes.Dashboard.Abstractions.Features.FileExplorer
+namespace Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries.GetDirectoryContents
 {
     public record GetDirectoryContentsResult
     {

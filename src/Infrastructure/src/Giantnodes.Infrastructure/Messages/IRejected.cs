@@ -1,4 +1,4 @@
-﻿namespace Giantnodes.Dashboard.Abstractions
+﻿namespace Giantnodes.Infrastructure.Messages
 {
     public interface IRejected<T> where T : Enum
     {
@@ -6,7 +6,7 @@
 
         DateTime TimeStamp { get; init; }
 
-        T Code { get; init; }
+        T ErrorCode { get; init; }
 
         string Reason { get; init; }
     }

@@ -1,23 +1,27 @@
-﻿using Giantnodes.Dashboard.Abstractions.Common;
-using Giantnodes.Dashboard.Abstractions.Features.FileExplorer;
+﻿using Giantnodes.Application.Validation;
+using Giantnodes.Dashboard.Abstractions.Common;
+using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries.GetDirectoryContents;
+using Giantnodes.Infrastructure.Exceptions;
 using MassTransit;
 
 namespace Giantnodes.Dashboard.Api.FileSystem
 {
     [ExtendObjectType(OperationTypeNames.Query)]
-    public class FileSystemResolver
+    public class GetDirectoryContentsResolver
     {
         [UseSorting]
         public async Task<IEnumerable<IFileSystemNode>> DirectoryContents(
-            [Service] IRequestClient<GetDirectoryContentsQuery> client,
-            GetDirectoryContentsQuery input,
+            [Service] IRequestClient<GetDirectoryContents> client,
+            GetDirectoryContents input,
             CancellationToken cancellation
         )
         {
-            Response response = await client.GetResponse<GetDirectoryContentsResult>(input, cancellation);
+            Response response = await client.GetResponse<GetDirectoryContentsResult, ValidationFault, GetDirectoryContentsRejected>(input, cancellation);
             return response switch
             {
                 (_, GetDirectoryContentsResult result) => Concat(result),
+                (_, ValidationFault error) => throw new DomainException<ValidationFault>(error),
+                (_, GetDirectoryContentsRejected error) => throw new DomainException<GetDirectoryContentsRejected>(error),
                 _ => throw new InvalidOperationException()
             };
         }
@@ -26,7 +30,7 @@ namespace Giantnodes.Dashboard.Api.FileSystem
         /// Concats both directories and files into a single list using <see cref="AddRange()"/> 
         /// as Concat chaining is much less performant.
         /// </summary>
-        /// <param name="result">The result of the <see cref="GetDirectoryContentsQuery"/>.</param>
+        /// <param name="result">The result of the <see cref="GetDirectoryContents"/>.</param>
         /// <returns>A IEnumerable containing both file system directoties and files.</returns>
         private static IEnumerable<IFileSystemNode> Concat(GetDirectoryContentsResult result)
         {

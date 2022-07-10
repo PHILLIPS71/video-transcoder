@@ -14,4 +14,8 @@
 		<Folder Include="Enums\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Infrastructure\src\Giantnodes.Infrastructure\Giantnodes.Infrastructure.csproj" />
+	</ItemGroup>
+
 </Project>

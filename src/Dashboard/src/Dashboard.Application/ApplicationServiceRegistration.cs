@@ -1,6 +1,9 @@
 ﻿using FluentValidation.AspNetCore;
-using Giantnodes.Dashboard.Abstractions.Features.FileExplorer;
-using Giantnodes.Dashboard.Application.Consumers.FileExplorer;
+using Giantnodes.Application.Validation;
+using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries.GetDirectoryContents;
+using Giantnodes.Dashboard.Abstractions.Features.Statistics.Queries.GetDirectoryContainerStatistics;
+using Giantnodes.Dashboard.Application.Consumers.FileExplorer.Queries;
+using Giantnodes.Dashboard.Application.Consumers.Statistics.Queries;
 using Giantnodes.Infrastructure.Storage;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +19,8 @@ namespace Giantnodes.Dashboard.Application
             services.AddFluentValidation(config =>
             {
                 config.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-                config.RegisterValidatorsFromAssemblyContaining(typeof(GetDirectoryContentsQuery));
+                config.RegisterValidatorsFromAssemblyContaining(typeof(GetDirectoryContentsValidator));
+                config.RegisterValidatorsFromAssemblyContaining(typeof(GetDirectoryContainerStatisticsValidator));
             });
 
             services.AddStorageServices(configuration);
@@ -42,7 +46,7 @@ namespace Giantnodes.Dashboard.Application
                     options.UsingRabbitMq((context, config) =>
                     {
                         config.ConfigureEndpoints(context);
-                        //config.UseConsumeFilter(typeof(FluentValidationFilter<>), context);
+                        config.UseConsumeFilter(typeof(FluentValidationFilter<>), context);
                     });
 
                 });

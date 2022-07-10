@@ -1,6 +1,6 @@
-﻿namespace Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries
+﻿namespace Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries.GetDirectoryContents
 {
-    public record GetDirectoryContainerStatisticsQuery
+    public record GetDirectoryContents
     {
         /// <summary>
         /// A directories full path.
