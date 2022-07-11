@@ -1,7 +1,0 @@
-{
-  "root": true,
-  "extends": ["@giantnodes/eslint-config-nextjs"],
-  "parserOptions": {
-    "project": ["**/tsconfig.json"]
-  }
-}
