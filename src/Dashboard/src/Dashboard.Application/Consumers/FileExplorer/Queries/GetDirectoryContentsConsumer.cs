@@ -1,5 +1,5 @@
 ﻿using Giantnodes.Dashboard.Abstractions.Common;
-using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries.GetDirectoryContents;
+using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries;
 using MassTransit;
 using System.IO.Abstractions;
 

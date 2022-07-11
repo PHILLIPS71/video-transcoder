@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries.GetDirectoryContents;
+using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries;
 using Giantnodes.Dashboard.Application.Consumers.FileExplorer.Queries;
 using MassTransit;
 using MassTransit.Testing;

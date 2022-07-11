@@ -1,6 +1,6 @@
 ﻿using Bogus;
-using Giantnodes.Dashboard.Abstractions.Features.Statistics.Queries.GetDirectoryContainerStatistics;
-using Giantnodes.Dashboard.Application.Consumers.Statistics.Queries;
+using Giantnodes.Dashboard.Abstractions.Features.Analytics.Queries;
+using Giantnodes.Dashboard.Application.Consumers.Analytics.Queries;
 using MassTransit;
 using MassTransit.Testing;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,9 +11,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Giantnodes.Dashboard.Application.Tests.Consumers.Statistics.Queries
+namespace Giantnodes.Dashboard.Application.Tests.Consumers.Analytics.Queries
 {
-    public class GetDirectoryContainerStatisticsUnitTests
+    public class GetDirectoryContainerAnalyticsUnitTests
     {
         private readonly ServiceProvider _provider;
         private readonly MockFileSystem _system = new MockFileSystem(new Dictionary<string, MockFileData> {
@@ -30,14 +30,14 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.Statistics.Queries
             { @"/media/tvshows/Silicon Valley/Season 1/Silicon Valley - S01E08 - Optimal Tip-to-Tip Efficiency.mov", new MockFileData(string.Empty) },
         });
 
-        public GetDirectoryContainerStatisticsUnitTests()
+        public GetDirectoryContainerAnalyticsUnitTests()
         {
             _provider = new ServiceCollection()
                 .AddSingleton<IFileSystem>(_system)
                 .AddApplicationTestServices()
                 .AddMassTransitTestHarness(options =>
                 {
-                    options.AddConsumer<GetDirectoryContainerStatisticsConsumer>();
+                    options.AddConsumer<GetDirectoryContainerAnalyticsConsumer>();
 
                 })
                 .BuildServiceProvider(true);
@@ -47,7 +47,7 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.Statistics.Queries
         public async Task Reject_With_Invalid_Path()
         {
             // Arrange
-            var query = new GetDirectoryContainerStatistics
+            var query = new GetDirectoryContainerAnalytics
             {
                 Directory = new Faker().System.FilePath()
             };
@@ -56,19 +56,19 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.Statistics.Queries
             await harness.Start();
 
             // Act
-            var client = harness.GetRequestClient<GetDirectoryContainerStatistics>();
-            var response = await client.GetResponse<GetDirectoryContainerStatisticsRejected>(query);
+            var client = harness.GetRequestClient<GetDirectoryContainerAnalytics>();
+            var response = await client.GetResponse<GetDirectoryContainerAnalyticsRejected>(query);
 
             // Assert
-            Assert.True(await harness.Sent.Any<GetDirectoryContainerStatisticsRejected>());
-            Assert.Equal(GetDirectoryContainerStatisticsRejection.DIRECTORY_NOT_FOUND, response.Message.ErrorCode);
+            Assert.True(await harness.Sent.Any<GetDirectoryContainerAnalyticsRejected>());
+            Assert.Equal(GetDirectoryContainerAnalyticsRejection.DIRECTORY_NOT_FOUND, response.Message.ErrorCode);
         }
 
         [Fact]
         public async Task Respond_Directory_Container_Distribution()
         {
             // Arrange
-            var query = new GetDirectoryContainerStatistics
+            var query = new GetDirectoryContainerAnalytics
             {
                 Directory = @"/media/tvshows/Silicon Valley/Season 1"
             };
@@ -77,11 +77,11 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.Statistics.Queries
             await harness.Start();
 
             // Act
-            var client = harness.GetRequestClient<GetDirectoryContainerStatistics>();
-            var response = await client.GetResponse<GetDirectoryContainerStatisticsResult>(query);
+            var client = harness.GetRequestClient<GetDirectoryContainerAnalytics>();
+            var response = await client.GetResponse<GetDirectoryContainerAnalyticsResult>(query);
 
             // Assert
-            Assert.True(await harness.Sent.Any<GetDirectoryContainerStatisticsResult>());
+            Assert.True(await harness.Sent.Any<GetDirectoryContainerAnalyticsResult>());
 
             var containers = response.Message.Containers.ToList();
             Assert.Equal(4, containers.Count);

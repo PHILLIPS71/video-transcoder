@@ -9,14 +9,13 @@ import { Card, Grid, Heading } from '@giantnodes/ui'
 
 import { SortEnumType } from '@/__generated__/graphql-types'
 import ExploreTable from '@/features/explore/ExploreTable'
-import DirectoryContainerStatistics from '@/features/explore/widgets/DirectoryContainerStatistics'
+import DirectoryContainerAnalytics from '@/features/explore/widgets/DirectoryContainerAnalytics'
 import { client } from '@/library/graphql-fetch'
 
 const GET_DIRECTORY_CONTENTS = gql`
-  query GetDirectoryContents($input: GetDirectoryContentsQueryInput!, $order: [IFileSystemNodeSortInput!]) {
+  query GetDirectoryContents($input: GetDirectoryContentsInput!, $order: [IFileSystemNodeSortInput!]) {
     directory_contents(input: $input, order: $order) {
       __typename
-
       ... on FileSystemFile {
         path
         name
@@ -88,7 +87,7 @@ const ExplorePage: NextPage<ExplorePageProps> = ({ path }: ExplorePageProps) => 
             </Heading>
           </Card.Header>
           <Card.Body>
-            <DirectoryContainerStatistics path={path} />
+            <DirectoryContainerAnalytics path={path} />
           </Card.Body>
         </Card>
 
@@ -99,7 +98,7 @@ const ExplorePage: NextPage<ExplorePageProps> = ({ path }: ExplorePageProps) => 
             </Heading>
           </Card.Header>
           <Card.Body>
-            <DirectoryContainerStatistics path={path} />
+            <DirectoryContainerAnalytics path={path} />
           </Card.Body>
         </Card>
       </Grid.Column>

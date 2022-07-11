@@ -1,6 +1,6 @@
 ﻿using Giantnodes.Application.Validation;
 using Giantnodes.Dashboard.Abstractions.Common;
-using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries.GetDirectoryContents;
+using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries;
 using Giantnodes.Infrastructure.Exceptions;
 using MassTransit;
 
@@ -16,12 +16,12 @@ namespace Giantnodes.Dashboard.Api.FileSystem
             CancellationToken cancellation
         )
         {
-            Response response = await client.GetResponse<GetDirectoryContentsResult, ValidationFault, GetDirectoryContentsRejected>(input, cancellation);
+            Response response = await client.GetResponse<GetDirectoryContentsResult, GetDirectoryContentsRejected, ValidationFault>(input, cancellation);
             return response switch
             {
                 (_, GetDirectoryContentsResult result) => Concat(result),
-                (_, ValidationFault error) => throw new DomainException<ValidationFault>(error),
                 (_, GetDirectoryContentsRejected error) => throw new DomainException<GetDirectoryContentsRejected>(error),
+                (_, ValidationFault error) => throw new DomainException<ValidationFault>(error),
                 _ => throw new InvalidOperationException()
             };
         }

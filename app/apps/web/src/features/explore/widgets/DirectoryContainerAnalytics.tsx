@@ -4,10 +4,10 @@ import styled from 'styled-components'
 
 import { Block } from '@giantnodes/ui'
 
-import { SortEnumType, useGetDirectoryContainerStatisticsQuery } from '@/__generated__/graphql-types'
+import { SortEnumType, useGetDirectoryContainerAnalyticsQuery } from '@/__generated__/graphql-types'
 import FileTypeColours from '@/layouts/constants/file-types'
 
-type DirectoryContainerStatisticsProps = {
+type DirectoryContainerAnalyticsProps = {
   path: string
 }
 
@@ -44,20 +44,20 @@ const LegendItem = styled.li`
   display: inline;
 `
 
-const GET_DIRECTORY_CONTAINER_STATISTICS = gql`
-  query GetDirectoryContainerStatistics(
-    $input: GetDirectoryContainerStatisticsQueryInput!
-    $order: [DirectoryContainerStatisticSortInput!]
+const GET_DIRECTORY_CONTAINER_ANALYTICS = gql`
+  query GetDirectoryContainerAnalytics(
+    $input: GetDirectoryContainerAnalyticsInput!
+    $order: [DirectoryContainerAnalyticsSortInput!]
   ) {
-    directory_container_statistics(input: $input, order: $order) {
+    directory_container_analytics(input: $input, order: $order) {
       extension
       percent
     }
   }
 `
 
-const DirectoryContainerStatistics: React.FC<DirectoryContainerStatisticsProps> = ({ path }) => {
-  const { data } = useGetDirectoryContainerStatisticsQuery({
+const DirectoryContainerAnalytics: React.FC<DirectoryContainerAnalyticsProps> = ({ path }) => {
+  const { data } = useGetDirectoryContainerAnalyticsQuery({
     input: {
       directory: `${process.env.NEXT_PUBLIC_LIBRARY_DIRECTORY}/${path}`,
     },
@@ -69,17 +69,17 @@ const DirectoryContainerStatistics: React.FC<DirectoryContainerStatisticsProps> 
   return (
     <>
       <Track>
-        {data?.directory_container_statistics.map((statistic) => (
-          <TrackBar extension={statistic.extension} percent={statistic.percent} />
+        {data?.directory_container_analytics.map((container) => (
+          <TrackBar extension={container.extension} percent={container.percent} />
         ))}
       </Track>
 
       <Legend>
-        {data?.directory_container_statistics.map((statistic) => (
+        {data?.directory_container_analytics.map((container) => (
           <LegendItem>
             <Block display="inline-flex" mr="16px" gridGap="8px">
               <svg
-                fill={FileTypeColours[statistic.extension]}
+                fill={FileTypeColours[container.extension]}
                 aria-hidden="true"
                 height="16"
                 viewBox="0 0 16 16"
@@ -90,8 +90,8 @@ const DirectoryContainerStatistics: React.FC<DirectoryContainerStatisticsProps> 
                 <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z" />
               </svg>
 
-              <Block fontWeight={700}>{statistic.extension}</Block>
-              <Block color="text.secondary">{statistic.percent}%</Block>
+              <Block fontWeight={700}>{container.extension}</Block>
+              <Block color="text.secondary">{container.percent}%</Block>
             </Block>
           </LegendItem>
         ))}
@@ -100,4 +100,4 @@ const DirectoryContainerStatistics: React.FC<DirectoryContainerStatisticsProps> 
   )
 }
 
-export default DirectoryContainerStatistics
+export default DirectoryContainerAnalytics

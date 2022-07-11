@@ -1,14 +1,14 @@
-﻿namespace Giantnodes.Dashboard.Abstractions.Features.Statistics.Queries.GetDirectoryContainerStatistics
+﻿namespace Giantnodes.Dashboard.Abstractions.Features.Analytics.Queries
 {
-    public record GetDirectoryContainerStatisticsResult
+    public record GetDirectoryContainerAnalyticsResult
     {
         /// <summary>
         /// A array of video file containers and the statistics around it
         /// </summary>
-        public DirectoryContainerStatistic[] Containers { get; init; } = Array.Empty<DirectoryContainerStatistic>();
+        public DirectoryContainerAnalytics[] Containers { get; init; } = Array.Empty<DirectoryContainerAnalytics>();
     }
 
-    public record DirectoryContainerStatistic
+    public record DirectoryContainerAnalytics
     {
         /// <summary>
         /// The file extension found in a directory

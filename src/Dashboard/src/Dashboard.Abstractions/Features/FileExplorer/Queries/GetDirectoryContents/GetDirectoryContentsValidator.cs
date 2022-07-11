@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries.GetDirectoryContents
+namespace Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries
 {
     public class GetDirectoryContentsValidator : AbstractValidator<GetDirectoryContents>
     {

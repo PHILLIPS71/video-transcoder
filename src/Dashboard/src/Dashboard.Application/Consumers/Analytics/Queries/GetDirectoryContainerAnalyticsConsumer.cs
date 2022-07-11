@@ -1,23 +1,23 @@
-﻿using Giantnodes.Dashboard.Abstractions.Features.Statistics.Queries.GetDirectoryContainerStatistics;
+﻿using Giantnodes.Dashboard.Abstractions.Features.Analytics.Queries;
 using MassTransit;
 using System.IO.Abstractions;
 
-namespace Giantnodes.Dashboard.Application.Consumers.Statistics.Queries
+namespace Giantnodes.Dashboard.Application.Consumers.Analytics.Queries
 {
-    public class GetDirectoryContainerStatisticsConsumer : IConsumer<GetDirectoryContainerStatistics>
+    public class GetDirectoryContainerAnalyticsConsumer : IConsumer<GetDirectoryContainerAnalytics>
     {
         private readonly IFileSystem _system;
 
-        public GetDirectoryContainerStatisticsConsumer(IFileSystem system)
+        public GetDirectoryContainerAnalyticsConsumer(IFileSystem system)
         {
             this._system = system;
         }
 
-        public async Task Consume(ConsumeContext<GetDirectoryContainerStatistics> context)
+        public async Task Consume(ConsumeContext<GetDirectoryContainerAnalytics> context)
         {
             if (!_system.Directory.Exists(context.Message.Directory))
             {
-                await context.RejectAsync<GetDirectoryContainerStatisticsRejected, GetDirectoryContainerStatisticsRejection>(GetDirectoryContainerStatisticsRejection.DIRECTORY_NOT_FOUND);
+                await context.RejectAsync<GetDirectoryContainerAnalyticsRejected, GetDirectoryContainerAnalyticsRejection>(GetDirectoryContainerAnalyticsRejection.DIRECTORY_NOT_FOUND);
                 return;
             }
 
@@ -28,14 +28,14 @@ namespace Giantnodes.Dashboard.Application.Consumers.Statistics.Queries
 
             var total = files.Length;
             var containers = files.GroupBy(file => file.Extension)
-                .Select(group => new DirectoryContainerStatistic
+                .Select(group => new DirectoryContainerAnalytics
                 {
                     Extension = group.Key,
                     Percent = Math.Round((decimal)group.Count() / total * 100, 2, MidpointRounding.ToEven)
                 })
                 .ToArray();
 
-            await context.RespondAsync<GetDirectoryContainerStatisticsResult>(new { Containers = containers });
+            await context.RespondAsync<GetDirectoryContainerAnalyticsResult>(new { Containers = containers });
         }
     }
 }

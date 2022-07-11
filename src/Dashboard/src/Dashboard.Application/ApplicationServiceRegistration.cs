@@ -1,9 +1,9 @@
 ﻿using FluentValidation.AspNetCore;
 using Giantnodes.Application.Validation;
-using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries.GetDirectoryContents;
-using Giantnodes.Dashboard.Abstractions.Features.Statistics.Queries.GetDirectoryContainerStatistics;
+using Giantnodes.Dashboard.Abstractions.Features.Analytics.Queries;
+using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries;
+using Giantnodes.Dashboard.Application.Consumers.Analytics.Queries;
 using Giantnodes.Dashboard.Application.Consumers.FileExplorer.Queries;
-using Giantnodes.Dashboard.Application.Consumers.Statistics.Queries;
 using Giantnodes.Infrastructure.Storage;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +20,7 @@ namespace Giantnodes.Dashboard.Application
             {
                 config.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                 config.RegisterValidatorsFromAssemblyContaining(typeof(GetDirectoryContentsValidator));
-                config.RegisterValidatorsFromAssemblyContaining(typeof(GetDirectoryContainerStatisticsValidator));
+                config.RegisterValidatorsFromAssemblyContaining(typeof(GetDirectoryContainerAnalyticsValidator));
             });
 
             services.AddStorageServices(configuration);
@@ -41,7 +41,7 @@ namespace Giantnodes.Dashboard.Application
                         .AddConsumer<GetDirectoryContentsConsumer>();
 
                     options
-                        .AddConsumer<GetDirectoryContainerStatisticsConsumer>();
+                        .AddConsumer<GetDirectoryContainerAnalyticsConsumer>();
 
                     options.UsingRabbitMq((context, config) =>
                     {

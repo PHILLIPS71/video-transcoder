@@ -1,6 +1,6 @@
 ﻿using Giantnodes.Infrastructure.Messages;
 
-namespace Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries.GetDirectoryContents
+namespace Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries
 {
     public record GetDirectoryContentsRejected : IRejected<GetDirectoryContentsRejection>
     {
