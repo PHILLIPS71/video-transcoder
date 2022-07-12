@@ -1,5 +1,5 @@
 import React from 'react'
-import { Bell, Menu, X } from 'react-feather'
+import { Bell, Menu, X } from 'lucide-react'
 
 import { Navbar } from '@giantnodes/ui'
 

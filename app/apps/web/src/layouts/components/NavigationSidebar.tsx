@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { Home, Search } from 'react-feather'
+import { Home, Search } from 'lucide-react'
 
 import { Sidebar } from '@giantnodes/ui'
 

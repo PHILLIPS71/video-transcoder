@@ -8,7 +8,7 @@ import type { GetServerSideProps } from 'next'
 import dayjs from 'dayjs'
 import gql from 'graphql-tag'
 import React from 'react'
-import { Clock, Edit3 } from 'react-feather'
+import { Clock, Edit3 } from 'lucide-react'
 import styled from 'styled-components'
 
 import { client } from '@/library/graphql-fetch'

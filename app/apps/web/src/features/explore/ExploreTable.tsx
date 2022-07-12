@@ -2,10 +2,10 @@ import type { GetDirectoryContentsQuery } from '@/__generated__/graphql-types'
 
 import { Trans } from '@lingui/macro'
 import filesize from 'filesize'
+import { ArrowLeft, File, Folder } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { ArrowLeft, File, Folder } from 'react-feather'
 
 import { Block, Paragraph, Table } from '@giantnodes/ui'
 

@@ -2,7 +2,7 @@ import type { ThemeContext } from '@/contexts/theme/ThemeContext'
 import type { DefaultTheme } from 'styled-components'
 
 import React from 'react'
-import { Moon, Sun } from 'react-feather'
+import { Moon, Sun } from 'lucide-react'
 import styled from 'styled-components'
 
 import { DarkTheme, LightTheme } from '@giantnodes/ui'
