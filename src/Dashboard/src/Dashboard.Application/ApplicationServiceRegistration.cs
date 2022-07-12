@@ -20,6 +20,7 @@ namespace Giantnodes.Dashboard.Application
             {
                 config.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                 config.RegisterValidatorsFromAssemblyContaining(typeof(GetDirectoryContentsValidator));
+                config.RegisterValidatorsFromAssemblyContaining(typeof(GetDirectoryAnalyticsValidator));
                 config.RegisterValidatorsFromAssemblyContaining(typeof(GetDirectoryContainerAnalyticsValidator));
             });
 
@@ -39,6 +40,9 @@ namespace Giantnodes.Dashboard.Application
 
                     options
                         .AddConsumer<GetDirectoryContentsConsumer>();
+
+                    options
+                        .AddConsumer<GetDirectoryAnalyticsConsumer>();
 
                     options
                         .AddConsumer<GetDirectoryContainerAnalyticsConsumer>();
