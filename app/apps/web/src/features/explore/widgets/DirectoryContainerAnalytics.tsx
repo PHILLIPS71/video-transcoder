@@ -1,14 +1,26 @@
+import type {
+  DirectoryContainerAnalytics as DirectoryContainerAnalyticsResult,
+  GetDirectoryContainerAnalyticsQuery,
+  GetDirectoryContainerAnalyticsQueryVariables,
+} from '@/__generated__/graphql-types'
+import type { GetServerSideProps } from 'next'
+
 import gql from 'graphql-tag'
 import React from 'react'
 import styled from 'styled-components'
 
 import { Block } from '@giantnodes/ui'
 
-import { SortEnumType, useGetDirectoryContainerAnalyticsQuery } from '@/__generated__/graphql-types'
+import { SortEnumType } from '@/__generated__/graphql-types'
 import FileTypeColours from '@/layouts/constants/file-types'
+import { client } from '@/library/graphql-fetch'
 
 type DirectoryContainerAnalyticsProps = {
-  path: string
+  analytics: DirectoryContainerAnalyticsResult[]
+}
+
+type DirectoryContainerAnalyticsComponent = React.FC<DirectoryContainerAnalyticsProps> & {
+  getServerSideProps: GetServerSideProps<DirectoryContainerAnalyticsProps>
 }
 
 type TrackBarProps = {
@@ -56,48 +68,60 @@ const GET_DIRECTORY_CONTAINER_ANALYTICS = gql`
   }
 `
 
-const DirectoryContainerAnalytics: React.FC<DirectoryContainerAnalyticsProps> = ({ path }) => {
-  const { data } = useGetDirectoryContainerAnalyticsQuery({
-    input: {
-      directory: `${process.env.NEXT_PUBLIC_LIBRARY_DIRECTORY}/${path}`,
-    },
-    order: {
-      percent: SortEnumType.Desc,
-    },
-  })
+const DirectoryContainerAnalytics: DirectoryContainerAnalyticsComponent = ({ analytics }) => (
+  <>
+    <Track>
+      {analytics?.map((container) => (
+        <TrackBar extension={container.extension} percent={container.percent} />
+      ))}
+    </Track>
 
-  return (
-    <>
-      <Track>
-        {data?.directory_container_analytics.map((container) => (
-          <TrackBar extension={container.extension} percent={container.percent} />
-        ))}
-      </Track>
+    <Legend>
+      {analytics?.map((container) => (
+        <LegendItem>
+          <Block display="inline-flex" mr="16px" gridGap="8px">
+            <svg
+              fill={FileTypeColours[container.extension]}
+              aria-hidden="true"
+              height="16"
+              viewBox="0 0 16 16"
+              version="1.1"
+              width="16"
+              data-view-component="true"
+            >
+              <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z" />
+            </svg>
 
-      <Legend>
-        {data?.directory_container_analytics.map((container) => (
-          <LegendItem>
-            <Block display="inline-flex" mr="16px" gridGap="8px">
-              <svg
-                fill={FileTypeColours[container.extension]}
-                aria-hidden="true"
-                height="16"
-                viewBox="0 0 16 16"
-                version="1.1"
-                width="16"
-                data-view-component="true"
-              >
-                <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z" />
-              </svg>
+            <Block fontWeight={700}>{container.extension}</Block>
+            <Block color="text.secondary">{container.percent}%</Block>
+          </Block>
+        </LegendItem>
+      ))}
+    </Legend>
+  </>
+)
 
-              <Block fontWeight={700}>{container.extension}</Block>
-              <Block color="text.secondary">{container.percent}%</Block>
-            </Block>
-          </LegendItem>
-        ))}
-      </Legend>
-    </>
+DirectoryContainerAnalytics.getServerSideProps = async (context) => {
+  const params = context.query.slug ? [...context.query.slug] : []
+  const path = params.reduce((x, param) => `${x}${param}/`, '')
+
+  const data = await client.request<GetDirectoryContainerAnalyticsQuery, GetDirectoryContainerAnalyticsQueryVariables>(
+    GET_DIRECTORY_CONTAINER_ANALYTICS,
+    {
+      input: {
+        directory: `${process.env.NEXT_PUBLIC_LIBRARY_DIRECTORY}/${path}`,
+      },
+      order: {
+        percent: SortEnumType.Desc,
+      },
+    }
   )
+
+  return {
+    props: {
+      analytics: data.directory_container_analytics,
+    },
+  }
 }
 
 export default DirectoryContainerAnalytics

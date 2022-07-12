@@ -9,6 +9,7 @@ import { ThemeProvider } from '@/contexts/theme/ThemeContext'
 import DefaultLayout from '@/layouts/DefaultLayout'
 import { options } from '@/library/graphql-fetch'
 
+import '@/library/dayjs'
 import 'public/scss/main.scss'
 
 const GlobalStyle = createGlobalStyle`

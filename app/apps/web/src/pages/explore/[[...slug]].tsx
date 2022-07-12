@@ -1,4 +1,9 @@
-import type { GetDirectoryContentsQuery, GetDirectoryContentsQueryVariables } from '@/__generated__/graphql-types'
+import type {
+  DirectoryContainerAnalytics as DirectoryContainerAnalyticsResult,
+  GetDirectoryAnalyticsResult,
+  GetDirectoryContentsQuery,
+  GetDirectoryContentsQueryVariables,
+} from '@/__generated__/graphql-types'
 import type { GetServerSideProps, NextPage } from 'next'
 
 import { Trans } from '@lingui/macro'
@@ -9,8 +14,15 @@ import { Card, Grid, Heading } from '@giantnodes/ui'
 
 import { SortEnumType } from '@/__generated__/graphql-types'
 import ExploreTable from '@/features/explore/ExploreTable'
+import DirectoryAnalytics from '@/features/explore/widgets/DirectoryAnalytics'
 import DirectoryContainerAnalytics from '@/features/explore/widgets/DirectoryContainerAnalytics'
 import { client } from '@/library/graphql-fetch'
+
+type ExplorePageProps = {
+  path: string
+  analytics: GetDirectoryAnalyticsResult
+  containers: DirectoryContainerAnalyticsResult[]
+}
 
 const GET_DIRECTORY_CONTENTS = gql`
   query GetDirectoryContents($input: GetDirectoryContentsInput!, $order: [IFileSystemNodeSortInput!]) {
@@ -40,11 +52,7 @@ const GET_DIRECTORY_CONTENTS = gql`
   }
 `
 
-type ExplorePageProps = {
-  path: string
-}
-
-const ExplorePage: NextPage<ExplorePageProps> = ({ path }: ExplorePageProps) => {
+const ExplorePage: NextPage<ExplorePageProps> = ({ path, analytics, containers }: ExplorePageProps) => {
   const [directory, setDirectory] = React.useState<GetDirectoryContentsQuery['directory_contents']>()
 
   const getDirectoryContents = React.useCallback(() => {
@@ -83,22 +91,22 @@ const ExplorePage: NextPage<ExplorePageProps> = ({ path }: ExplorePageProps) => 
         <Card>
           <Card.Header>
             <Heading level={6}>
-              <Trans>File Containers</Trans>
+              <Trans>About</Trans>
             </Heading>
           </Card.Header>
           <Card.Body>
-            <DirectoryContainerAnalytics path={path} />
+            <DirectoryAnalytics analytics={analytics} />
           </Card.Body>
         </Card>
 
         <Card>
           <Card.Header>
             <Heading level={6}>
-              <Trans>File Codecs</Trans>
+              <Trans>File Containers</Trans>
             </Heading>
           </Card.Header>
           <Card.Body>
-            <DirectoryContainerAnalytics path={path} />
+            <DirectoryContainerAnalytics analytics={containers} />
           </Card.Body>
         </Card>
       </Grid.Column>
@@ -110,9 +118,18 @@ export const getServerSideProps: GetServerSideProps<ExplorePageProps> = async (c
   const params = context.query.slug ? [...context.query.slug] : []
   const path = params.reduce((x, param) => `${x}${param}/`, '')
 
+  const promises = [
+    DirectoryAnalytics.getServerSideProps(context),
+    DirectoryContainerAnalytics.getServerSideProps(context),
+  ]
+
+  const components = await Promise.all(promises)
+
   return {
     props: {
       path,
+      analytics: components[0]?.props?.analytics,
+      containers: components[1].props?.analytics,
     },
   }
 }
