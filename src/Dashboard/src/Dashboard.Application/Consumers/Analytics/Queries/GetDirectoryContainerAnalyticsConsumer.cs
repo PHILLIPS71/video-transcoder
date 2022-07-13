@@ -31,7 +31,8 @@ namespace Giantnodes.Dashboard.Application.Consumers.Analytics.Queries
                 .Select(group => new DirectoryContainerAnalytics
                 {
                     Extension = group.Key,
-                    Percent = Math.Round((decimal)group.Count() / total * 100, 2, MidpointRounding.ToEven)
+                    TotalFiles = group.Count(),
+                    Percent = Math.Round((decimal)group.Count() / total * 100, 2, MidpointRounding.ToEven),
                 })
                 .ToArray();
 

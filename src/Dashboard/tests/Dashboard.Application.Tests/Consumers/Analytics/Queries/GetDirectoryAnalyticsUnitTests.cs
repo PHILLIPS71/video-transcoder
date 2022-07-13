@@ -18,6 +18,7 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.Analytics.Queries
     {
         private readonly ServiceProvider _provider;
         private readonly MockFileSystem _system = new MockFileSystem(new Dictionary<string, MockFileData> {
+            { @"/media/tvshows/Silicon Valley", new MockDirectoryData() },
             { @"/media/tvshows/Silicon Valley/Season 1", new MockDirectoryData() },
             { @"/media/tvshows/Silicon Valley/Season 1/.DS_Store", new MockFileData(string.Empty) },
             { @"/media/tvshows/Silicon Valley/Season 1/poster.png", new MockFileData(string.Empty) },
@@ -75,7 +76,7 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.Analytics.Queries
 
             var query = new GetDirectoryAnalytics
             {
-                Directory = @"/media/tvshows/Silicon Valley/Season 1"
+                Directory = @"/media/tvshows/Silicon Valley"
             };
 
             var harness = _provider.GetRequiredService<ITestHarness>();
@@ -88,6 +89,27 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.Analytics.Queries
             // Assert
             Assert.True(await harness.Sent.Any<GetDirectoryAnalyticsResult>());
             Assert.Equal(_system.FileInfo.FromFileName(path).FullName, response.Message.LatestModifiedFile?.Path);
+        }
+
+        [Fact]
+        public async Task Respond_Total_Media_Files()
+        {
+            // Arrange
+            var query = new GetDirectoryAnalytics
+            {
+                Directory = @"/media/tvshows/Silicon Valley"
+            };
+
+            var harness = _provider.GetRequiredService<ITestHarness>();
+            await harness.Start();
+
+            // Act
+            var client = harness.GetRequestClient<GetDirectoryAnalytics>();
+            var response = await client.GetResponse<GetDirectoryAnalyticsResult>(query);
+
+            // Assert
+            Assert.True(await harness.Sent.Any<GetDirectoryAnalyticsResult>());
+            Assert.Equal(8, response.Message.TotalFiles);
         }
     }
 }

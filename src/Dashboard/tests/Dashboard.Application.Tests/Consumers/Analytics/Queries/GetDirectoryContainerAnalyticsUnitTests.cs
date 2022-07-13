@@ -85,12 +85,23 @@ namespace Giantnodes.Dashboard.Application.Tests.Consumers.Analytics.Queries
 
             var containers = response.Message.Containers.ToList();
             Assert.Equal(4, containers.Count);
-
-            Assert.Equal(25, containers.First(c => c.Extension == ".mp4").Percent);
-            Assert.Equal(25, containers.First(c => c.Extension == ".mkv").Percent);
-            Assert.Equal(25, containers.First(c => c.Extension == ".avi").Percent);
-            Assert.Equal(25, containers.First(c => c.Extension == ".mov").Percent);
             Assert.Equal(100, containers.Sum(c => c.Percent));
+
+            var mp4 = containers.First(c => c.Extension == ".mp4");
+            Assert.Equal(25, mp4.Percent);
+            Assert.Equal(2, mp4.TotalFiles);
+
+            var mkv = containers.First(c => c.Extension == ".mkv");
+            Assert.Equal(25, mkv.Percent);
+            Assert.Equal(2, mkv.TotalFiles);
+
+            var avi = containers.First(c => c.Extension == ".avi");
+            Assert.Equal(25, avi.Percent);
+            Assert.Equal(2, avi.TotalFiles);
+
+            var mov = containers.First(c => c.Extension == ".mov");
+            Assert.Equal(25, mov.Percent);
+            Assert.Equal(2, mov.TotalFiles);
         }
     }
 }

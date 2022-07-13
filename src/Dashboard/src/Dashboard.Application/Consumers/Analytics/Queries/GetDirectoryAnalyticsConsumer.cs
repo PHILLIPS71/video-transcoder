@@ -22,9 +22,13 @@ namespace Giantnodes.Dashboard.Application.Consumers.Analytics.Queries
                 return;
             }
 
-            var directory = _system.DirectoryInfo.FromDirectoryName(context.Message.Directory);
-            var latest = directory.GetFiles("*", SearchOption.AllDirectories)
+            var files = _system.DirectoryInfo
+                .FromDirectoryName(context.Message.Directory)
+                .GetFiles("*", SearchOption.AllDirectories)
                 .Where(file => file.IsMediaFile())
+                .ToArray();
+
+            var latest = files
                 .OrderByDescending(file => file.LastWriteTimeUtc)
                 .Select(file => new FileSystemFile
                 {
@@ -37,7 +41,12 @@ namespace Giantnodes.Dashboard.Application.Consumers.Analytics.Queries
                 })
                 .FirstOrDefault();
 
-            await context.RespondAsync<GetDirectoryAnalyticsResult>(new { LatestModifiedFile = latest, WatchTimeMinutes = 0 });
+            await context.RespondAsync<GetDirectoryAnalyticsResult>(new
+            {
+                LatestModifiedFile = latest,
+                TotalFiles = files.Length,
+                WatchTimeMinutes = 0
+            });
         }
     }
 }

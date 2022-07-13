@@ -6,6 +6,8 @@ namespace Giantnodes.Dashboard.Abstractions.Features.Analytics.Queries
     {
         public FileSystemFile? LatestModifiedFile { get; init; }
 
+        public int TotalFiles { get; init; }
+
         public long WatchTimeMinutes { get; init; }
     }
 }

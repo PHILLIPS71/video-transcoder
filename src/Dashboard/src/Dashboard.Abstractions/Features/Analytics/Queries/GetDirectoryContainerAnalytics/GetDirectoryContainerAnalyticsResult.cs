@@ -16,7 +16,12 @@
         public string Extension { get; init; } = string.Empty;
 
         /// <summary>
-        /// The percentage of the file system that uses the extension
+        /// The total amount of files in the directory that uses the extension
+        /// </summary>
+        public int TotalFiles { get; init; }
+
+        /// <summary>
+        /// The percentage of the directory that uses the extension
         /// </summary>
         public decimal Percent { get; init; }
     }
