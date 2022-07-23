@@ -1,8 +1,6 @@
-﻿using System.IO.Abstractions;
-
-namespace System.IO
+﻿namespace System.IO.Abstractions
 {
-    public static class FileInfoExtensions
+    public static class IIFileInfoExtensions
     {
         /// <summary>
         /// Determines if the specified file is a media file by comparing
@@ -10,15 +8,6 @@ namespace System.IO
         /// </summary>
         /// <param name="file">A file to check the media type of.</param>
         /// <returns></returns>
-        public static bool IsMediaFile(this FileInfo file)
-        {
-            var extension = file.Extension;
-            if (string.IsNullOrEmpty(extension))
-                return false;
-
-            return _extensions.Contains(extension);
-        }
-
         public static bool IsMediaFile(this IFileInfo file)
         {
             var extension = file.Extension;
