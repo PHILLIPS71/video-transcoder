@@ -3,7 +3,7 @@ using Giantnodes.Dashboard.Abstractions.Features.Analytics.Queries;
 using Giantnodes.Infrastructure.Exceptions;
 using MassTransit;
 
-namespace Giantnodes.Dashboard.Api.FileSystem
+namespace Giantnodes.Dashboard.Api.Resolvers
 {
     [ExtendObjectType(OperationTypeNames.Query)]
     public class GetDirectoryContainerAnalyticsResolver
@@ -18,7 +18,7 @@ namespace Giantnodes.Dashboard.Api.FileSystem
             Response response = await client.GetResponse<GetDirectoryContainerAnalyticsResult, GetDirectoryContainerAnalyticsRejected, ValidationFault>(input, cancellation);
             return response switch
             {
-                (_, GetDirectoryContainerAnalyticsResult result) => result.Containers.AsEnumerable(),
+                (_, GetDirectoryContainerAnalyticsResult result) => result.Containers,
                 (_, GetDirectoryContainerAnalyticsRejected error) => throw new DomainException<GetDirectoryContainerAnalyticsRejected>(error),
                 (_, ValidationFault error) => throw new DomainException<ValidationFault>(error),
                 _ => throw new InvalidOperationException()

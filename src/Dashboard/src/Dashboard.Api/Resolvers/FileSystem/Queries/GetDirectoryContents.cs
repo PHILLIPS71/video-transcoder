@@ -4,7 +4,7 @@ using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries;
 using Giantnodes.Infrastructure.Exceptions;
 using MassTransit;
 
-namespace Giantnodes.Dashboard.Api.FileSystem
+namespace Giantnodes.Dashboard.Api.Resolvers
 {
     [ExtendObjectType(OperationTypeNames.Query)]
     public class GetDirectoryContentsResolver
