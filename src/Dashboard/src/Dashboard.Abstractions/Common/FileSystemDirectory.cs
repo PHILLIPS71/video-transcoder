@@ -12,6 +12,9 @@
         public string Name { get; set; } = null!;
 
         /// <inheritdoc />
+        public long Length { get; set; }
+
+        /// <inheritdoc />
         public DateTime CreatedAtUtc { get; set; }
 
         /// <inheritdoc />

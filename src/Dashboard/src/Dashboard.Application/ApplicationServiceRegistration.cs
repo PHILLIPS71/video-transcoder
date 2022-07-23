@@ -8,6 +8,7 @@ using Giantnodes.Infrastructure.Storage;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 using System.Reflection;
 
 namespace Giantnodes.Dashboard.Application
@@ -25,7 +26,24 @@ namespace Giantnodes.Dashboard.Application
             });
 
             services.AddStorageServices(configuration);
+            services.AddCacheServices(configuration);
             services.AddMassTransitServices(configuration);
+
+            return services;
+        }
+
+        private static IServiceCollection AddCacheServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            var connection = configuration.GetConnectionString("RedisConnection");
+
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = connection;
+                options.InstanceName = "Transcoder";
+            });
+
+            services.AddSingleton<IConnectionMultiplexer>(_ => ConnectionMultiplexer.Connect(connection));
+            services.AddDistributedMemoryCache();
 
             return services;
         }
