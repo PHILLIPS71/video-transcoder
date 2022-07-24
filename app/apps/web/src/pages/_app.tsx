@@ -54,6 +54,10 @@ const GlobalStyle = createGlobalStyle`
     &:hover {
       text-decoration: underline;
       color:  ${(props) => props.theme.colors.primary};
+
+      * {
+        color:  ${(props) => props.theme.colors.primary};
+      }
     }
   }
 `
