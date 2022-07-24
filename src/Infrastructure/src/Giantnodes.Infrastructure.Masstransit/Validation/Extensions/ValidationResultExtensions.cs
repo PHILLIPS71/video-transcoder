@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace Giantnodes.Application.Validation
+namespace Giantnodes.Infrastructure.Masstransit.Validation
 {
     public static class ValidationResultExtensions
     {

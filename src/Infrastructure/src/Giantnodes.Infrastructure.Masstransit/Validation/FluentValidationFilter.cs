@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MassTransit;
 
-namespace Giantnodes.Application.Validation
+namespace Giantnodes.Infrastructure.Masstransit.Validation
 {
     public class FluentValidationFilter<TMessage> : IFilter<ConsumeContext<TMessage>>
         where TMessage : class

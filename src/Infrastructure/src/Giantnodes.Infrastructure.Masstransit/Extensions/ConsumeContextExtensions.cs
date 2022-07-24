@@ -1,5 +1,5 @@
-﻿using Giantnodes.Infrastructure;
-using Giantnodes.Infrastructure.Messages;
+﻿using Giantnodes.Infrastructure.Contracts;
+using Giantnodes.Infrastructure.Masstransit;
 
 namespace MassTransit
 {

@@ -29,7 +29,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".referenced", ".referenced"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Giantnodes.Infrastructure", "..\Infrastructure\src\Giantnodes.Infrastructure\Giantnodes.Infrastructure.csproj", "{A7409824-9DE2-455D-87B7-3EFE797B27CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Giantnodes.Infrastructure.Storage", "..\Infrastructure\src\Giantnodes.Infrastructure.Storage\Giantnodes.Infrastructure.Storage.csproj", "{6372233F-1964-4B93-B6D4-A601B8CA59BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Giantnodes.Infrastructure.Storage", "..\Infrastructure\src\Giantnodes.Infrastructure.Storage\Giantnodes.Infrastructure.Storage.csproj", "{6372233F-1964-4B93-B6D4-A601B8CA59BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Giantnodes.Infrastructure.Masstransit", "..\Infrastructure\src\Giantnodes.Infrastructure.Masstransit\Giantnodes.Infrastructure.Masstransit.csproj", "{ACE53200-D3F5-41C5-AEB3-17D32CB2319E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{6372233F-1964-4B93-B6D4-A601B8CA59BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6372233F-1964-4B93-B6D4-A601B8CA59BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6372233F-1964-4B93-B6D4-A601B8CA59BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACE53200-D3F5-41C5-AEB3-17D32CB2319E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE53200-D3F5-41C5-AEB3-17D32CB2319E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE53200-D3F5-41C5-AEB3-17D32CB2319E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE53200-D3F5-41C5-AEB3-17D32CB2319E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +103,7 @@ Global
 		{1FA6B4A2-72D5-48B6-8854-BBC693DAA25C} = {0E635204-FBE1-4266-80BB-443CBC0A6BB9}
 		{A7409824-9DE2-455D-87B7-3EFE797B27CA} = {CDE6AB5E-3CC7-4432-A68B-B6370C3F036F}
 		{6372233F-1964-4B93-B6D4-A601B8CA59BC} = {CDE6AB5E-3CC7-4432-A68B-B6370C3F036F}
+		{ACE53200-D3F5-41C5-AEB3-17D32CB2319E} = {CDE6AB5E-3CC7-4432-A68B-B6370C3F036F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {56C9DCFE-F5E3-4C6F-AB2E-06C1344537D6}

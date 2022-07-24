@@ -1,4 +1,4 @@
-﻿namespace Giantnodes.Infrastructure.Messages
+﻿namespace Giantnodes.Infrastructure.Contracts
 {
     public interface IRejected<T> where T : Enum
     {

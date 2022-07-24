@@ -1,4 +1,4 @@
-﻿using Giantnodes.Infrastructure.Messages;
+﻿using Giantnodes.Infrastructure.Contracts;
 
 namespace Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries
 {

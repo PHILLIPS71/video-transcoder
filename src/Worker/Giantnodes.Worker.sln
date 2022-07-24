@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Giantnodes.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Giantnodes.Infrastructure.Storage", "..\Infrastructure\src\Giantnodes.Infrastructure.Storage\Giantnodes.Infrastructure.Storage.csproj", "{CC8576BE-A216-4E5D-A673-91D8C75DA533}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Giantnodes.Infrastructure.Masstransit", "..\Infrastructure\src\Giantnodes.Infrastructure.Masstransit\Giantnodes.Infrastructure.Masstransit.csproj", "{6CBA190B-BFBF-4F48-B671-8128D604F710}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{CC8576BE-A216-4E5D-A673-91D8C75DA533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC8576BE-A216-4E5D-A673-91D8C75DA533}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC8576BE-A216-4E5D-A673-91D8C75DA533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CBA190B-BFBF-4F48-B671-8128D604F710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CBA190B-BFBF-4F48-B671-8128D604F710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CBA190B-BFBF-4F48-B671-8128D604F710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CBA190B-BFBF-4F48-B671-8128D604F710}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{E06AB6FE-4727-4368-85B3-D09B4BB444F7} = {A0E3C7F0-FAA3-4B74-965D-F18245F25D9B}
 		{9E344699-F712-47AB-B0B9-A3A1E496C4F5} = {9BBA7860-6EC8-42DE-9E35-71592FAE1220}
 		{CC8576BE-A216-4E5D-A673-91D8C75DA533} = {9BBA7860-6EC8-42DE-9E35-71592FAE1220}
+		{6CBA190B-BFBF-4F48-B671-8128D604F710} = {9BBA7860-6EC8-42DE-9E35-71592FAE1220}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {332D6FF3-E6FD-460C-B898-7FA1C6FA5E77}

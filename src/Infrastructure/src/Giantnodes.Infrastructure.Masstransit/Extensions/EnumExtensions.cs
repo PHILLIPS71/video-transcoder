@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 
-namespace Giantnodes.Infrastructure
+namespace Giantnodes.Infrastructure.Masstransit
 {
-    public static class DescriptionAttributeExtensions
+    public static class EnumExtensions
     {
         public static string GetStringValue(this Enum value)
         {

@@ -1,9 +1,9 @@
 ﻿using FluentValidation.AspNetCore;
-using Giantnodes.Application.Validation;
 using Giantnodes.Dashboard.Abstractions.Features.Analytics.Queries;
 using Giantnodes.Dashboard.Abstractions.Features.FileExplorer.Queries;
 using Giantnodes.Dashboard.Application.Consumers.Analytics.Queries;
 using Giantnodes.Dashboard.Application.Consumers.FileExplorer.Queries;
+using Giantnodes.Infrastructure.Masstransit.Validation;
 using Giantnodes.Infrastructure.Storage;
 using MassTransit;
 using Microsoft.Extensions.Configuration;

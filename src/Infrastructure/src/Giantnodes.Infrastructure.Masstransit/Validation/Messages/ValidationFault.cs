@@ -1,4 +1,4 @@
-﻿namespace Giantnodes.Application.Validation
+﻿namespace Giantnodes.Infrastructure.Masstransit.Validation
 {
     public record ValidationFault
     {

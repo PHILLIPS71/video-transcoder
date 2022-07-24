@@ -1,6 +1,6 @@
 ﻿using Giantnodes.Infrastructure.Exceptions;
 
-namespace Giantnodes.Application.Validation
+namespace Giantnodes.Infrastructure.Masstransit.Validation
 {
     public class ValidationException : DomainException<ValidationFault>
     {

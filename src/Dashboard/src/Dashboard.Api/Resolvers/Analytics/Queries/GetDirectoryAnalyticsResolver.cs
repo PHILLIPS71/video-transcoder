@@ -1,6 +1,6 @@
-﻿using Giantnodes.Application.Validation;
-using Giantnodes.Dashboard.Abstractions.Features.Analytics.Queries;
+﻿using Giantnodes.Dashboard.Abstractions.Features.Analytics.Queries;
 using Giantnodes.Infrastructure.Exceptions;
+using Giantnodes.Infrastructure.Masstransit.Validation;
 using MassTransit;
 
 namespace Giantnodes.Dashboard.Api.Resolvers

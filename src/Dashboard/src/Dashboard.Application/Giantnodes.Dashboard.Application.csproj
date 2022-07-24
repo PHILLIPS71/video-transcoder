@@ -7,17 +7,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
-		<PackageReference Include="MassTransit" Version="8.0.3" />
-		<PackageReference Include="MassTransit.Analyzers" Version="8.0.3" />
-		<PackageReference Include="MassTransit.RabbitMQ" Version="8.0.3" />
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.0.5" />
 		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.7" />
 		<PackageReference Include="StackExchange.Redis" Version="2.6.48" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\Infrastructure\src\Giantnodes.Infrastructure.Masstransit\Giantnodes.Infrastructure.Masstransit.csproj" />
 		<ProjectReference Include="..\..\..\Infrastructure\src\Giantnodes.Infrastructure.Storage\Giantnodes.Infrastructure.Storage.csproj" />
-		<ProjectReference Include="..\..\..\Infrastructure\src\Giantnodes.Infrastructure\Giantnodes.Infrastructure.csproj" />
 		<ProjectReference Include="..\Dashboard.Abstractions\Giantnodes.Dashboard.Abstractions.csproj" />
 		<ProjectReference Include="..\Dashboard.Persistence\Giantnodes.Dashboard.Persistence.csproj" />
 	</ItemGroup>

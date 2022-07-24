@@ -7,15 +7,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FluentValidation" Version="11.1.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Enums\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\..\..\Infrastructure\src\Giantnodes.Infrastructure\Giantnodes.Infrastructure.csproj" />
+		<ProjectReference Include="..\..\..\Infrastructure\src\Giantnodes.Infrastructure\Giantnodes.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>
